@@ -1,15 +1,15 @@
 "use client"
 import "./globals.css";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-
+import { Montserrat} from "next/font/google";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 import TemporaryDrawer from "@/components/TemporaryDrawer";
 import SideBarProvider, { SideBarContext } from "@/context/SideBarContext";
 
 
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const monserrat = Montserrat({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -25,7 +25,7 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={montserrat.className}>
+			<body className={monserrat.className}>
 				<section className="bg-[#ededed]">
 					{/* wrapp everything with my side bar */}
 					<SideBarProvider>
