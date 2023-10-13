@@ -9,7 +9,7 @@ import React, {
 import {
   HiUser
 } from "react-icons/hi"
-
+import styles from "@/utils/css/layout.module.css"
 function Login() {
   return (
     <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">

@@ -1,0 +1,24 @@
+.heading{
+    font-size: 20px;
+    line-height: 1.5px;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #181818;
+}
+.heading2{
+    font-size: 20px;
+    line-height: 1.5px;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: #181818;
+}
+.body_text{
+    font-size: 16px;
+    line-height: 1.5px;
+    letter-spacing: 0;
+    font-weight: 400;
+    
+}
+.brandcolor{
+    color:#1F5780 ;
+}

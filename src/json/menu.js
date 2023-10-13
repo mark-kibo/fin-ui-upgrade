@@ -11,7 +11,6 @@ export const MenuContent =
         "link":"/finfinancials/membership",
         "submenu":
         [
-      
           {
             "id":21,
             "label":"Change Account Status",
@@ -1316,6 +1315,158 @@ export const MenuContent =
       
   },
 
+  {
+
+    "id": 209,
+  "label": "Fixed Assets",
+  "link": "/Inventory",
+  "submenu": [
+    {
+
+      "id": 209,
+    "label": "Asset Register",
+    "link": "/Inventory",
+    "submenu": [
+      {
+        "id": 166,
+        "label": "Capture Asset",
+        "link": "/finfinancials/reports/report list"
+      },
+      
+      {
+        "id": 167,
+        "label": "Approve Capture",
+        "link": "/finfinancials/reports/custom reports"
+      }
+        
+    ],
+    "isOpen": false
+  },
+
+
+  {
+
+    "id": 209,
+  "label": "Depreciation",
+  "link": "/Inventory",
+  "submenu": [
+    {
+      "id": 166,
+      "label": "Create Schedule",
+      "link": "/finfinancials/reports/report list"
+    },
+    
+    {
+      "id": 167,
+      "label": "Approve Schedule",
+      "link": "/finfinancials/reports/custom reports"
+    }
+      
+  ],
+  "isOpen": false
+},
+
+{
+
+  "id": 209,
+"label": "Asset Disposal",
+"link": "/Inventory",
+"submenu": [
+  {
+    "id": 166,
+    "label": "Capture Disposal",
+    "link": "/finfinancials/reports/report list"
+  },
+  
+  {
+    "id": 167,
+    "label": "Approve Disposal",
+    "link": "/finfinancials/reports/custom reports"
+  },
+
+    
+],
+"isOpen": false
+},
+    {
+      "id": 167,
+      "label": "Fixed Assets Reports",
+      "link": "/finfinancials/reports/custom reports"
+    },
+
+
+{
+
+  "id": 209,
+"label": "Fixed Asset Setup",
+"link": "/Inventory",
+"submenu": [
+  {
+    "id": 166,
+    "label": "Fixed Assets Categories",
+    "link": "/finfinancials/reports/report list"
+  },
+  
+  {
+    "id": 167,
+    "label": "Fixed Assets Parameters",
+    "link": "/finfinancials/reports/custom reports"
+  },
+
+
+  {
+    "id": 167,
+    "label": "Approve Categories",
+    "link": "/finfinancials/reports/custom reports"
+  }
+    
+],
+"isOpen": false
+},
+
+
+
+{
+
+  "id": 209,
+"label": "Revaluation",
+"link": "/Inventory",
+"submenu": [
+  {
+
+      "id": 166,
+      "label": "Capture Revaluation",
+      "link": "/finfinancials/reports/report list"
+    },
+    
+    {
+      "id": 167,
+      "label": "Approve Revaluation",
+      "link": "/finfinancials/reports/custom reports"
+    }
+      
+  ],
+  "isOpen": false
+  },
+
+  
+    
+],
+"isOpen": false
+},
+  
+
+
+
+
+  
+
+
+
+
+
+
+
 
   {
 
@@ -1324,24 +1475,162 @@ export const MenuContent =
   "link": "/Inventory",
   "submenu": [
     {
+
+      "id": 209,
+    "label": "Stock Request",
+    "link": "/Inventory",
+    "submenu": [
+      {
+        "id": 166,
+        "label": "Request Item ",
+        "link": "/finfinancials/reports/report list"
+      },
+      
+      {
+        "id": 167,
+        "label": "Approve Item Request",
+        "link": "/finfinancials/reports/custom reports"
+      }
+        
+    ],
+    "isOpen": false
+  },
+
+
+  {
+
+    "id": 209,
+  "label": "Stores",
+  "link": "/Inventory",
+  "submenu": [
+    {
       "id": 166,
-      "label": "Report List ",
+      "label": "Issue Items",
       "link": "/finfinancials/reports/report list"
     },
     
     {
       "id": 167,
-      "label": "Custom Reports",
+      "label": "Adjust or Take stock",
       "link": "/finfinancials/reports/custom reports"
-    },
-
-
-    {
-      "id": 168,
-      "label": "User Defined Reports",
-      "link": "/finfinancials/reports/user defined reports"
     }
       
+  ],
+  "isOpen": false
+},
+
+{
+
+  "id": 209,
+"label": "Purchases",
+"link": "/Inventory",
+"submenu": [
+  {
+    "id": 166,
+    "label": "Request For Quote  ",
+    "link": "/finfinancials/reports/report list"
+  },
+  
+  {
+    "id": 167,
+    "label": "Request Evaluation",
+    "link": "/finfinancials/reports/custom reports"
+  },
+
+  {
+    "id": 166,
+    "label": "Issue LPO  ",
+    "link": "/finfinancials/reports/report list"
+  },
+  
+  {
+    "id": 167,
+    "label": "Cash Purchases",
+    "link": "/finfinancials/reports/custom reports"
+  },
+
+  {
+    "id": 167,
+    "label": "Delivery Note",
+    "link": "/finfinancials/reports/custom reports"
+  }
+    
+],
+"isOpen": false
+},
+
+
+{
+
+  "id": 209,
+"label": "Stock Items Authorization",
+"link": "/Inventory",
+"submenu": [
+  {
+    "id": 166,
+    "label": "Authorize Requests",
+    "link": "/finfinancials/reports/report list"
+  },
+  
+  {
+    "id": 167,
+    "label": "Adjust or Take stock",
+    "link": "/finfinancials/reports/custom reports"
+  }
+    
+],
+"isOpen": false
+},
+
+{
+  "id": 167,
+  "label": "Inventory Reports",
+  "link": "/finfinancials/reports/custom reports"
+},
+
+{
+
+  "id": 209,
+"label": "Inventory Setup",
+"link": "/Inventory",
+"submenu": [
+  {
+
+    "id": 209,
+  "label": "Stock Master",
+  "link": "/Inventory",
+  "submenu": [
+    {
+      "id": 166,
+      "label": "Capture Stock Master",
+      "link": "/finfinancials/reports/report list"
+    },
+    
+    {
+      "id": 167,
+      "label": "Approve Stock Master",
+      "link": "/finfinancials/reports/custom reports"
+    }
+      
+  ],
+  "isOpen": false
+  },
+
+  {
+    "id": 167,
+    "label": "Inventory Parameter",
+    "link": "/finfinancials/reports/custom reports"
+  }
+
+    
+],
+"isOpen": false
+}
+  
+
+
+
+
   ],
   "isOpen": false
 
@@ -1359,7 +1648,7 @@ export const MenuContent =
 
 
   "id": 269,
-  "label": "File tracker",
+  "label": "File Tracker",
   "link": "/filetracker",
   "submenu": [
 
@@ -1636,7 +1925,7 @@ export const MenuContent =
 {
 
   "id": 165,
-  "label": "Global Administartion",
+  "label": "Global Administration",
   "link": "/finfinancials/reports",
   "submenu": [
     {
@@ -1739,7 +2028,7 @@ export const MenuContent =
 
 {
   "id": 165,
-  "label": " Consolidated Reports",
+  "label": "Consolidated Reports",
   "link": "/consolidated reports",
   "submenu": [
     {
@@ -1771,7 +2060,7 @@ export const MenuContent =
 
 
 
-
   
 
    
+  
