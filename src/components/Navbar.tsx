@@ -64,7 +64,7 @@ export default function Navbar() {
     <div className='fixed top-0 w-full z-10 text-black '>
     <Box sx={{ flexGrow: 1 }}>
     
-      <AppBar position="static" style={{backgroundColor: "#FFFFFF", color:"black",  display:"flex", justifyContent:"space-between", marginBottom:"10px"}} className='flex justify-between'>
+      <AppBar color="transparent" sx={{backdropFilter:"blur(20px)"}} className='flex justify-between'>
     
         <Toolbar className='flex justify-between'>
           
