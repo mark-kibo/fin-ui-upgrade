@@ -4,9 +4,12 @@ import ColumnChart from "./ApexCharts/ColumnChart";
 import PieChart from "./ApexCharts/PieChart";
 import BarChart from "./ApexCharts/barChart";
 import Loans from "./Loans";
+import MessageHandler from "./MessageHandler/MessageHandler";
+
 import Reports from "./Reports";
 import TopCards from "./TopCards";
 import Transactions from "./Transactions";
+import Handler from "./handler";
 
 const Dashboard = () => {
 	return (

@@ -1,3 +1,4 @@
+
 import React, { useContext, createContext, useEffect, useState } from "react";
 import { MenuContent } from '../json/menu';
 
@@ -22,7 +23,7 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
     //Responsible for storing the subContainers entries
     const [subContainerEntries, setSubContainerEntries] = useState(null);
     //Responsible for holding all of the data that goes into the navbar
-    const [entryStore, setEntryStore] = useState(null);
+    const [entryStore, setEntryStore] = useState<Object []>();
 
     
     useEffect(() => {

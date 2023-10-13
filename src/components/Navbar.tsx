@@ -7,20 +7,14 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
+
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import TextField from '@mui/material/TextField';
+
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
-import ConnectWithoutContactRoundedIcon from '@mui/icons-material/ConnectWithoutContactRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded';
-import {useProSidebar } from "react-pro-sidebar"
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import AddIcCallSharpIcon from '@mui/icons-material/AddIcCallSharp';
-import LockResetSharpIcon from '@mui/icons-material/LockResetSharp';
+
 import LockOpenSharpIcon from '@mui/icons-material/LockOpenSharp';
 import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/navigation';
@@ -30,12 +24,8 @@ import FeedSharpIcon from '@mui/icons-material/FeedSharp';
 export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const router=useRouter()
-  const {toggleSidebar, collapseSidebar, toggled, broken } = useProSidebar();
-  const toggle = ()=>{
-    toggleSidebar();
-    toggled ? collapseSidebar() : collapseSidebar()
-
-}
+ 
+ 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +51,7 @@ export default function Navbar() {
   const anchor="left"
  
   return (
-    <div className='fixed top-0 w-full z-10 text-black '>
+  
     <Box sx={{ flexGrow: 1 }}>
     
       <AppBar color="transparent" sx={{backdropFilter:"blur(20px)"}} className='flex justify-between'>
@@ -181,6 +171,6 @@ export default function Navbar() {
       </AppBar>
 
     </Box>
-    </div>
+  
   );
 }
