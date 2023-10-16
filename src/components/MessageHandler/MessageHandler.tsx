@@ -16,6 +16,7 @@ const MessageHandler = (props) => {
     <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
+        severity={props.type} 
           action={
             <IconButton
               aria-label="close"
@@ -24,7 +25,7 @@ const MessageHandler = (props) => {
               onClick={() => {
                 setOpen(false);
               }}
-              severity={props.type} // changes the color of the alert based on the type eg success
+              // changes the color of the alert based on the type eg success
             >
               <CloseIcon fontSize="inherit" />
             </IconButton>

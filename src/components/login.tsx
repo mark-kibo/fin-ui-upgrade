@@ -4,18 +4,67 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import React, {
-  useState,useEffect, use, ReactEventHandler, ReactNode 
+  useState, useEffect, use, ReactEventHandler, ReactNode
 } from 'react';
 import {
   HiUser
 } from "react-icons/hi"
 import styles from "@/utils/css/layout.module.css"
+import axios from "axios"
+import { NextResponse } from 'next/server';
+import { useRouter } from 'next/navigation';
+import MessageHandler from './MessageHandler/MessageHandler';
 function Login() {
-  const [data, setData]=useState({})
-  function handleChange(e){
-    setData({...data, [e.target.name]:e.target.value})
+  const [data, setData] = useState({})
+  const [error, setError] = useState(null)
+
+  const router = useRouter()
+  const https = require('https')
+
+  // handle login 
+  function handleChange(e) {
+    setData({ ...data, [e.target.name]: e.target.value })
+    // console.log(data)
   }
-   
+
+  async function getLoginToken(data) {
+    try {
+      const res = await axios.post("https://localhost:7279/api/v1/users/login", data, {
+        httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+      });
+      // Check the response for errors, if any.
+      if (res.data.error) {
+        throw new Error(res.data.error);
+      }
+      return res.data;
+    } catch (error) {
+      // Set the error state to display the error message.
+      setError({
+        type: "error",
+        message: "Invalid credentials or an error occurred.",
+      });
+      console.error(error);
+    }
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    getLoginToken(data)
+      .then((data) => {
+        setTimeout(() => {
+          if (data[0]) {
+            router.push("/");
+          }
+        }, 3000);
+      })
+      .catch((error) => {
+        // The error state has already been set in getLoginToken function.
+      });
+  }
+
+  // fetch token data from api
+
+
   return (
     <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
       <div
@@ -30,10 +79,17 @@ function Login() {
           <div className="flex  justify-center items-center iconn__wrappe p-0">
             <HiUser className="text-sky-900" size={90} />
           </div>
-          <form  >
+          <div className='py-2'>
+            {error && (<MessageHandler type={error.type} message={error.message} />)}
+
+          </div>
+          <form method='POST' onSubmit={(e) => {
+            handleSubmit(e)
+          }} >
+            
             <div className='mb-4'>
               <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-              <input type="text" onChange={handleChange} name="name" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" />
+              <input type="text" onChange={handleChange} name="username" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" id="Username" />
             </div>
             <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
               <div>
@@ -62,10 +118,11 @@ function Login() {
                 <option value="TV">en</option>
               </select>
             </div>
-            <Link href="/">
+
             <button className='bg-[#1F5780] rounded-md p-3 sm:col-span-2 w-full text-white' type="submit">Login</button>
-            </Link>
+
           </form>
+          
 
           <div className=" flex justify-between">
             <h5 className='text-sm p-2'>

@@ -1,11 +1,13 @@
 "use client"
 import "./globals.css";
 import type { Metadata } from "next";
-import { Montserrat} from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
 import TemporaryDrawer from "@/components/TemporaryDrawer";
 import SideBarProvider, { SideBarContext } from "@/context/SideBarContext";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 
@@ -21,7 +23,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	
+
 
 	return (
 		<html lang="en">
@@ -29,10 +31,13 @@ export default function RootLayout({
 				<section className="bg-[#ededed]">
 					{/* wrapp everything with my side bar */}
 					<SideBarProvider>
-							<TemporaryDrawer />
+						<TemporaryDrawer />
+						<Suspense fallback={<Loading />}>
 							{children}
+						</Suspense>
+
 					</SideBarProvider>
-					
+
 				</section>
 			</body>
 		</html>
