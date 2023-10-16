@@ -54,6 +54,16 @@ import SideNavRow from "./SideNavContainer/SideNavRowcopy";
 import style from "@/utils/css/layout.module.css";
 import { HiChevronDown } from "react-icons/hi";
 
+import FinfinancialsIcon from '@mui/icons-material/AccountBalance';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import FixedAssetsIcon from '@mui/icons-material/AccountBalanceWallet';
+import FileTrackerIcon from '@mui/icons-material/Description';
+import HumanResourceIcon from '@mui/icons-material/PeopleAlt';
+import PayrollIcon from '@mui/icons-material/AttachMoney';
+import GlobalAdministrationIcon from '@mui/icons-material/Settings';
+import ConsolidatedReportsIcon from '@mui/icons-material/Assessment';
+
+
 
 
 
@@ -84,7 +94,17 @@ const SideBar: React.FC = () => {
 
 
 
-
+  // level 0 icons
+  const icons = {
+    'Finfinancials': <FinfinancialsIcon />,
+    'Inventory': <InventoryIcon />,
+    'Fixed Assets': <FixedAssetsIcon />,
+    'File Tracker': <FileTrackerIcon  />,
+    'Human Resource': <HumanResourceIcon />,
+    'Payroll': <PayrollIcon />,
+    'Global Administration': <GlobalAdministrationIcon/>,
+    'Consolidated Reports': <ConsolidatedReportsIcon />,
+  };
 
 
 
@@ -220,7 +240,10 @@ const SideBar: React.FC = () => {
 
 
 
-                  <h2 className={`${style.heading} p-3  cursor-pointer`}>{menu.label}</h2>
+                  <h2 className={`${style.heading} p-3  cursor-pointer flex justify-center items-center`}>
+                   {/* {menu.icon} */}
+                   <div className="pr-2">{icons[menu.label]}</div>
+                    {menu.label}</h2>
 
                   {/* check whether openedSubmenu matches menu.label for arrow action  */}
 
