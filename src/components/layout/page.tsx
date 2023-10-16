@@ -10,12 +10,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<Navbar />
-			<div>
-				
-			</div>
-
-			<div className="mt-50">
-				<div className="text-2xl capitalize rounded-md  px-4 py-2">
+		
+			<section className="min-h-screen bg-[#ededed] lg:mx-20 sm:mx-0 pt-20">
+				<div className="text-2xl capitalize rounded-md  px-4">
 					<Breadcrumbs aria-label="breadcrumb" className="">
 						<h2 color="text.primary mt-2">
 							{pathname === "/" ? (
@@ -32,10 +29,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					</h2>
 					<p className="capitalize text-gray- px-4">Welcome Back</p>
 				</div>
-			</div>
-
-			<section className="min-h-screen bg-[#ededed] lg:mx-20 sm:mx-0 ">
-
+				
 				{children}
 			</section>
 			<Footer />

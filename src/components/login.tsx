@@ -4,13 +4,18 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import React, {
-  useState
+  useState,useEffect, use, ReactEventHandler, ReactNode 
 } from 'react';
 import {
   HiUser
 } from "react-icons/hi"
 import styles from "@/utils/css/layout.module.css"
 function Login() {
+  const [data, setData]=useState({})
+  function handleChange(e){
+    setData({...data, [e.target.name]:e.target.value})
+  }
+   
   return (
     <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
       <div
@@ -28,7 +33,7 @@ function Login() {
           <form  >
             <div className='mb-4'>
               <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-              <input type="text" name="name" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" />
+              <input type="text" onChange={handleChange} name="name" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" />
             </div>
             <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
               <div>
@@ -46,7 +51,7 @@ function Login() {
             </div>
             <div className='mb-5'>
               <label htmlFor="password" className="block mb-2 text-sm  font-medium text-gray-900 dark:text-sky-900">Password</label>
-              <input type="password" name="password" id="password" placeholder="••••••••" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" required />
+              <input type="password" onChange={handleChange} name="password" id="password" placeholder="••••••••" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" required />
             </div>
             <div className='mb-5'>
               <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Language</label>

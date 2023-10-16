@@ -13,7 +13,7 @@ export default function SideNavRow(props) {
     }
 
     return (
-        <div className=" flex flex-row justify-between p-2  ml-10 hover:bg-gray-400" onClick={() => (props.entries && openRow())}>
+        <div className=" flex flex-row justify-between p-2  ml-10 hover:bg-gray-200 cursor-pointer" onClick={() => (props.entries && openRow())}>
             <div className={`${style.heading2} p-2`}>{props.text}</div>
             {props.entries && <ChevronRight/>}
         </div>

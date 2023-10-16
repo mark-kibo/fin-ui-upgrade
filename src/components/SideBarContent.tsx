@@ -219,7 +219,7 @@ const SideBar: React.FC = () => {
 
 
 
-                  <h2 className={`${style.heading} p-3`}>{menu.label}</h2>
+                  <h2 className={`${style.heading} p-3  cursor-pointer`}>{menu.label}</h2>
 
 
 

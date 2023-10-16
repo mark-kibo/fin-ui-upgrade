@@ -56,7 +56,7 @@ class PieChart extends React.Component {
         return (
 
 
-            <div className='w-full shadow-lg  md:col-span-1 relatiive lg:h-[50vh] h-[50vh] m-auto  p-2 border rounded-lg bg-[#ffffff]'>
+            <div className='w-full shadow-lg  md:col-span-1 relatiive lg:h-[40vh] h-[40vh] m-auto  px-2  border rounded-lg bg-[#ffffff]'>
                 <div className='h-full w-auto sm:w-full sm:h-full'>
                     <Chart options={this.state.options} series={this.state.series} type="donut" width="100%" height="100%" />
                 </div>
