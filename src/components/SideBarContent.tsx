@@ -50,7 +50,7 @@ import { SideBarContext } from "@/context/SideBarContext";
 
 import { ChevronRight } from '@mui/icons-material';
 
-import SideNavRow from "./SideNavContainer/SideNavRowcopy";
+import SideNavRow from "./SideNavContainer/SideNavRow";
 import style from "@/utils/css/layout.module.css";
 import { HiChevronDown } from "react-icons/hi";
 
