@@ -50,6 +50,7 @@ import { SideBarContext } from "@/context/SideBarContext";
 
 import { ChevronRight } from '@mui/icons-material';
 
+import SideNavRow from "./SideNavContainer/SideNavRow";
 import style from "@/utils/css/layout.module.css";
 import { HiChevronDown } from "react-icons/hi";
 
@@ -61,9 +62,6 @@ import HumanResourceIcon from '@mui/icons-material/PeopleAlt';
 import PayrollIcon from '@mui/icons-material/AttachMoney';
 import GlobalAdministrationIcon from '@mui/icons-material/Settings';
 import ConsolidatedReportsIcon from '@mui/icons-material/Assessment';
-import SideNavRow from "./SideNavContainer/SideNavRow";
-
-
 
 
 
