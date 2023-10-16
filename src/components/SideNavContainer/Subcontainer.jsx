@@ -9,9 +9,11 @@ const SubSideBar = () => {
   
   return (
       <div >
-            <div className="bg-gray-200 text-center hover:bg-gray-400 cursor-pointer  p-2  flex " onClick={() => setSubContainer(false)}>
-            <ChevronLeft/>MAIN MENU
-            </div>
+            <div className="bg-gray-200 hover:bg-gray-400 p-2 flex" onClick={() => setSubContainer(false)}>
+  <ChevronLeft />
+  <span className="text-center flex-grow">MAIN MENU</span>
+</div>
+
             
             {subContainerEntries.map(subEntry => (
                 

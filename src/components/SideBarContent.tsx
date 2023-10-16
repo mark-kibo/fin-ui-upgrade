@@ -48,10 +48,11 @@ import SubSideBar from "./SideNavContainer/Subcontainer";
 
 import { SideBarContext } from "@/context/SideBarContext";
 
-
+import { ChevronRight } from '@mui/icons-material';
 
 import SideNavRow from "./SideNavContainer/SideNavRowcopy";
 import style from "@/utils/css/layout.module.css";
+import { HiChevronDown } from "react-icons/hi";
 
 
 
@@ -221,7 +222,13 @@ const SideBar: React.FC = () => {
 
                   <h2 className={`${style.heading} p-3  cursor-pointer`}>{menu.label}</h2>
 
+                  {/* check whether openedSubmenu matches menu.label for arrow action  */}
 
+                  {openSubmenu === menu.label ? ( 
+                    <HiChevronDown  />
+                       ) : (
+                           <HiChevronDown style={{ transform: "rotate(270deg)" }} />
+            )}
 
                 </ListItemButton>
 
@@ -235,7 +242,9 @@ const SideBar: React.FC = () => {
 
 
 
-                    <SideNavRow text={subEntry.label} entries={subEntry.submenu} key={subEntry.label} />
+
+                    <SideNavRow classname ={`${style.heading2}`} text={subEntry.label} entries={subEntry.submenu} key={subEntry.label} />
+                    
 
 
 
