@@ -52,9 +52,9 @@ export default function Navbar() {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar
-				color="transparent"
-				sx={{ }}
-				className="flex justify-between h-15"
+			
+				sx={{ backgroundColor: "#fafafa", backdropFilter: "blur 10px"}}
+				className="flex justify-between h-15 text-black"
 			>
 				<Toolbar className="flex justify-between">
 					<IconButton
