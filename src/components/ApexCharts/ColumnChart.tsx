@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Chart from "react-apexcharts";
 
 class ColumnChart extends React.Component {
-  constructor(props) {
+  constructor(props: {} | Readonly<{}>) {
     super(props);
 
     this.state = {
@@ -50,7 +50,7 @@ class ColumnChart extends React.Component {
         },
         tooltip: {
           y: {
-            formatter: function (val) {
+            formatter: function (val: string) {
               return "$ " + val + " thousands"
             }
           }

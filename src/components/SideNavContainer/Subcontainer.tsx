@@ -14,28 +14,46 @@ const SubSideBar = () => {
 
   return (
     <div >
-      <div className="bg-gray-200 hover:bg-gray-400 p-2 flex" onClick={() => setSubContainer(false)}>
-        <ChevronLeft />
-        <span className="text-center flex-grow">MAIN MENU</span>
-      </div>
 
+            <div className="bg-gray-200 text-center hover:bg-gray-400  p-2  flex " onClick={() => setSubContainer(false)}>
 
-      {subContainerEntries.map((subEntry: { id: number; label: string; submenu: Object []; }) => (
+            <ChevronLeft/>MAIN MENU
 
-        <>
+            </div>
 
-          {/* <div className='p-4'>{!subEntry.submenu && subEntry.label}</div> */}
+           
 
+            {subContainerEntries.map((subEntry: { id: number| null | undefined; label: string; submenu: Object[]; }) => (
 
-          <SideNavRow key={subEntry.id} text={subEntry.label} entries={subEntry.submenu} />
+               
 
+            <>
 
+     
 
-        </>
+              {/* <div className='p-4'>{!subEntry.submenu && subEntry.label}</div> */}
 
+             
 
-      ))}
-    </div>
+               
+
+                  <SideNavRow key={subEntry.id} text={subEntry.label} entries={subEntry.submenu}/>
+
+               
+
+           
+
+               
+
+              </>
+
+         
+
+               
+
+            ))}
+
+        </div>
   )
 }
 

@@ -2,7 +2,7 @@ import { SideBarContext } from '@/context/SideBarContext';
 import { ChevronRight } from '@mui/icons-material';
 import React from 'react'
 import { useContext } from 'react';
-
+import style from "@/utils/css/layout.module.css";
 export default function SideNavRow(props: { entries: Object []; text: string ; }) {
     const {setSubContainer, setSubContainerEntries} = useContext(SideBarContext);
 
@@ -12,9 +12,12 @@ export default function SideNavRow(props: { entries: Object []; text: string ; }
     }
 
     return (
-        <div className="sidenavRow" onClick={() => (props.entries && openRow())}>
-            <div>{props.text}</div>
+        <div className=" flex flex-row justify-between p-2  ml-10 hover:bg-gray-400" onClick={() => (props.entries && openRow())}>
+
+            <div className={`${style.heading2} p-2`}>{props.text}</div>
+
             {props.entries && <ChevronRight/>}
+
         </div>
     );
 
