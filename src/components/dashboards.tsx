@@ -21,8 +21,8 @@ const Dashboard = () => {
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-2 p-4">
 				<BarChart />
 				<AreaChart />
-				<ColumnChart />
-				<PieChart />
+				{/* <ColumnChart />
+				<PieChart /> */}
 			</div>
 		</div>
 	);
