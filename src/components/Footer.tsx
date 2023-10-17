@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="flex  lg:flex-row md:flex-row">
             <div className="flex items-center justify-center md:flex-col md:justify-center md:items-center md:w-full sm:text-2">
              <p className='capitalize text-[#1F5780] text-base sm:text-sm'>Data integrations technologies</p>
-             <span className='pl-2 sm:pl-0'><p className='text-sm'>&copy; {new Date().getFullYear()} ALL RIGHTS RESERVED</p></span> 
+             <span className='pl-2 sm:pl-0'><p className='text-sm'>&copy; 2023 ALL RIGHTS RESERVED</p></span> 
             </div>
       </div>
     
