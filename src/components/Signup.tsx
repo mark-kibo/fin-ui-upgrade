@@ -71,6 +71,13 @@ function signup() {
                     <Link href='/login'><a>Already have an account? </a><span className='font-bold'>Login</span></Link>
                 </p>
             </div>
+            <div className="flex justify-center items-center h-4">
+            <div className="flex items-center: md:flex-row justify-center items-center">
+              <h5 className=' mt-2 text-sm text-sky-900  ml-auto'>
+                Data Integration Technologies <span>&copy; 2023</span>
+              </h5>
+            </div>
+            </div>
 
         </main>
     )
