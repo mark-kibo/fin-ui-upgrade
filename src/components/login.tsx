@@ -14,11 +14,9 @@ import axios from "axios"
 import { NextResponse } from 'next/server';
 import { useRouter } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
-import Loading from './loading';
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
   const https = require('https')
@@ -51,28 +49,24 @@ function Login() {
   
   function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true)
     getLoginToken(data)
       .then((data) => {
-          if (data) {
-            setLoading(false)
+        setTimeout(() => {
+          if (data[0]) {
             router.push("/");
           }
-     
+        }, 3000);
       })
       .catch((error) => {
-        setLoading(false)
         // The error state has already been set in getLoginToken function.
       });
-      setLoading(false)
   }
 
   // fetch token data from api
 
 
   return (
-    loading ? (<Loading/>) : (
-      <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
+    <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
       <div
         className='flex bg-white w-[90%] md:w-[40%] lg:w-[30%]  h-auto justify-center items-center p-1 m-5 shadow-2xl rounded-2xl'
         style={{
@@ -143,18 +137,16 @@ function Login() {
             </h5>
             {/* bg-[#1F5780] */}
           </div>
-          <div className="footer mt-2">
-            <div className="flex justify-center items-center">
-              <h5 className='text-sm capitalize text-sky-900'>
-                data intergrations <span>&copy; 2023</span> technologies
+          <div className="flex justify-center items-center h-4">
+            <div className="flex items-center: md:flex-row justify-center items-center">
+              <h5 className=' mt-2 text-sm text-sky-900  ml-auto'>
+                Data Integration Technologies <span>&copy; 2023</span>
               </h5>
             </div>
+            </div>
           </div>
-        </div>
       </div>
-    </main>
-    )
-  )
+    </main>)
 }
 
 export default Login
