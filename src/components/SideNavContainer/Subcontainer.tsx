@@ -15,7 +15,7 @@ const SubSideBar = () => {
   return (
     <div >
 
-            <div className="bg-gray-200 text-centerhover:bg-gray-400 p-2 flex " onClick={() => setSubContainer(false)}>
+            <div className="bg-gray-200 text-center hover:bg-gray-400 p-2 flex cursor-pointer" onClick={() => setSubContainer(false)}>
 
             <ChevronLeft/>
             <span className="text-center flex-grow">MAIN MENU</span>
@@ -47,6 +47,7 @@ const SubSideBar = () => {
                
 
               </>
+              
 
          
 
