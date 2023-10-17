@@ -17,7 +17,7 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
     bottom: false,
     right: false,
   });
-  console.log(state)
+
 
   const [subContainer, setSubContainer] = useState(false);
     //Responsible for storing the subContainers entries

@@ -3,7 +3,7 @@ import { ChevronRight } from '@mui/icons-material';
 import React from 'react'
 import { useContext } from 'react';
 
-export default function SideNavRow(props) {
+export default function SideNavRow(props: { entries: Object []; text: string ; }) {
     const {setSubContainer, setSubContainerEntries} = useContext(SideBarContext);
 
     const openRow = () => {

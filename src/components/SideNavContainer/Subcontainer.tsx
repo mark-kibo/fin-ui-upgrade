@@ -1,8 +1,10 @@
-import { SideBarContext } from '@/context/SideBarContext';
+
 import React, { useContext } from 'react'
 
 import { ChevronLeft } from '@mui/icons-material';
+import { SideBarContext } from '@/context/SideBarContext';
 import SideNavRow from './SideNavRow';
+
 
 
 const SubSideBar = () => {
@@ -18,7 +20,7 @@ const SubSideBar = () => {
       </div>
 
 
-      {subContainerEntries.map(subEntry => (
+      {subContainerEntries.map((subEntry: { id: number; label: string; submenu: Object []; }) => (
 
         <>
 
