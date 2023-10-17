@@ -95,7 +95,7 @@ const SideBar: React.FC = () => {
 
 
   // level 0 icons
-  const icons = {
+  const icons: { [key: string]: JSX.Element } = {
     'Finfinancials': <FinfinancialsIcon />,
     'Inventory': <InventoryIcon />,
     'Fixed Assets': <FixedAssetsIcon />,
@@ -104,7 +104,7 @@ const SideBar: React.FC = () => {
     'Payroll': <PayrollIcon />,
     'Global Administration': <GlobalAdministrationIcon/>,
     'Consolidated Reports': <ConsolidatedReportsIcon />,
-  };
+};
 
 
 
@@ -224,15 +224,17 @@ const SideBar: React.FC = () => {
 
 
 
-            .filter(menu => menusToDisplay.includes(menu.label))
+            .filter((menu: { label: string; }) => menusToDisplay.includes(menu.label))
 
 
 
-            .map(menu => (
+            .map((menu:{
+              [x: string]: any; label: string; 
+}) => (
 
 
 
-              <div className="mx-4 " key={menu.label}>
+              <div className="mx-4  mb-4" key={menu.label}>
 
 
 
@@ -261,12 +263,12 @@ const SideBar: React.FC = () => {
 
 
 
-                  {menu.submenu.map(subEntry => (
+                  {menu.submenu.map((subEntry: { label: string; submenu: Object[]; }) => (
 
 
 
 
-                    <SideNavRow classname ={`${style.heading2}`} text={subEntry.label} entries={subEntry.submenu} key={subEntry.label} />
+                    <SideNavRow  text={subEntry.label} entries={subEntry.submenu} key={subEntry.label} />
                     
 
 
