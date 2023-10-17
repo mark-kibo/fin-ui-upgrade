@@ -1,10 +1,12 @@
+
+import Loading from '@/app/loading';
 import {useRouter} from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const withAuth = (WrappedComponent) => {
   const WithAuth = (props) => {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useState(false);
     const router = useRouter()
 
     useEffect(() => {
@@ -23,7 +25,7 @@ const withAuth = (WrappedComponent) => {
     }, [user]);
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <Loading/>;
     }
 
     if (!user) {
