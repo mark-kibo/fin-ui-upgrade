@@ -33,6 +33,6 @@
 import withAuth from "@/utils/PrivateRouting";
 import dashboard from "./dashboard/dashboard";
 
-export default withAuth(dashboard);
+export default dashboard;
 
 

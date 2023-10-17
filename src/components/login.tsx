@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import React, {
-  useState, useEffect, use, ReactEventHandler, ReactNode
+  useState, useEffect, use, ReactEventHandler, ReactNode, useContext
 } from 'react';
 import {
   HiUser
@@ -15,55 +15,69 @@ import { NextResponse } from 'next/server';
 import { useRouter } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
 import Loading from './loading';
+// client side fetching
+import useSWR from 'swr';
+import { useAuth } from '@/context/AuthContext';
+
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const {token} =useAuth()
 
   const router = useRouter()
   const https = require('https')
-
+  console.log(token)
   // handle login 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value })
-    // console.log(data)
+    console.log(data)
   }
 
   async function getLoginToken(data) {
-    try {
-      const res = await axios.post("https://localhost:7279/api/v1/users/login", data, {
-        httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+    try{
+
+      const response = await fetch("/api/home", {
+        method: "POST",
+        body: JSON.stringify(data),
       });
-      // Check the response for errors, if any.
-      if (res.data.error) {
-        throw new Error(res.data.error);
-      }
-      return res.data;
-    } catch (error) {
-      // Set the error state to display the error message.
+      
+      
+      const resData=await response.json()
+      return resData;
+    }catch{
       setError({
         type: "error",
         message: "Invalid credentials or an error occurred.",
       });
       console.error(error);
     }
+      
+      // if(response.status !== 200){
+      //   setError({
+      //     type:"error",
+      //     message:"Invalid credentials"
+      //   })
+      // }
+    
   }
   
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true)
-    getLoginToken(data)
-      .then((data) => {
-          if (data) {
-            setLoading(false)
+    const myData=getLoginToken(data)
+     
+        // console.log(data)
+          if (myData.token) {
+            setTimeout(()=>{
+              setLoading(false)
+            },6000)
+            
             router.push("/");
           }
      
-      })
-      .catch((error) => {
-        setLoading(false)
-        // The error state has already been set in getLoginToken function.
-      });
+     
+      
       setLoading(false)
   }
 
@@ -95,7 +109,7 @@ function Login() {
             
             <div className='mb-4'>
               <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-              <input type="text" onChange={handleChange} name="username" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" id="Username" />
+              <input type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" id="Username" />
             </div>
             <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
               <div>

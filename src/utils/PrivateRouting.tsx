@@ -1,34 +1,36 @@
-
 import Loading from '@/components/loading';
+import { useAuth } from '@/context/AuthContext';
 import {useRouter} from 'next/navigation';
 import { JSX, ReactComponentElement, useEffect, useState } from 'react';
 
 const withAuth = (WrappedComponent: any) => {
   const WithAuth = (props:any) => {
-    const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(false);
-    const router = useRouter()
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(true);
+  const {token}= useAuth()
+  const router = useRouter()
 
     useEffect(() => {
       // Fetch user data here and set it using setUser
       // For example:
       // setUser(fetchUserData());
+      console.log(token)
 
       setLoading(false);
     }, []);
 
     useEffect(() => {
       // Check if user is authenticated and redirect if not
-      if (!user) {
+      if (!token) {
         router.push('/login');
       }
-    }, [user]);
+    }, [token]);
 
     if (loading) {
       return <Loading/>;
     }
 
-    if (!user) {
+    if (token == null) {
       // Render nothing while redirecting
       return null;
     }

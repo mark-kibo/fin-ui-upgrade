@@ -11,11 +11,14 @@ import Reports from "./Reports";
 import TopCards from "./TopCards";
 import Transactions from "./Transactions";
 import Handler from "./handler";
+import nookies from "nookies"
 
 const Dashboard = () => {
+	
 	return (
 		<div className="h-auto">
 			<div>
+				
 				<TopCards />
 			</div>
 
