@@ -14,9 +14,11 @@ import axios from "axios"
 import { NextResponse } from 'next/server';
 import { useRouter } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
+import Loading from './loading';
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
   const https = require('https')
@@ -49,24 +51,28 @@ function Login() {
   
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true)
     getLoginToken(data)
       .then((data) => {
-        setTimeout(() => {
-          if (data[0]) {
+          if (data) {
+            setLoading(false)
             router.push("/");
           }
-        }, 3000);
+     
       })
       .catch((error) => {
+        setLoading(false)
         // The error state has already been set in getLoginToken function.
       });
+      setLoading(false)
   }
 
   // fetch token data from api
 
 
   return (
-    <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
+    loading ? (<Loading/>) : (
+      <main className="flex bg-[#ededed] min-h-screen flex-col sm:w-2/2  justify-center items-center h-screen">
       <div
         className='flex bg-white w-[90%] md:w-[40%] lg:w-[30%]  h-auto justify-center items-center p-1 m-5 shadow-2xl rounded-2xl'
         style={{
@@ -146,7 +152,9 @@ function Login() {
           </div>
         </div>
       </div>
-    </main>)
+    </main>
+    )
+  )
 }
 
 export default Login

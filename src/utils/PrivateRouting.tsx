@@ -1,5 +1,5 @@
 
-import Loading from '@/app/loading';
+import Loading from '@/components/loading';
 import {useRouter} from 'next/navigation';
 import { JSX, ReactComponentElement, useEffect, useState } from 'react';
 

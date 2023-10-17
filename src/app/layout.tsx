@@ -7,7 +7,7 @@ import { Montserrat } from "next/font/google";
 
 import SideBarProvider, { SideBarContext } from "@/context/SideBarContext";
 import { Suspense } from "react";
-import Loading from "./loading";
+import Loading from "../components/loading";
 import TemporaryDrawer from "@/components/SideBarContainer";
 
 
