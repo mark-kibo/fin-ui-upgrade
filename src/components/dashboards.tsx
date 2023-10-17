@@ -1,5 +1,6 @@
 "use client";
 
+import AreaChart from "./ApexCharts/AreaChart";
 import ColumnChart from "./ApexCharts/ColumnChart";
 import PieChart from "./ApexCharts/PieChart";
 import BarChart from "./ApexCharts/barChart";
