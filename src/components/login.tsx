@@ -21,7 +21,6 @@ function Login() {
 
   const router = useRouter()
   const https = require('https')
-  console.log(token)
   // handle login 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value })
