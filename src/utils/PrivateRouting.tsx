@@ -1,10 +1,10 @@
 
 import Loading from '@/app/loading';
 import {useRouter} from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { JSX, ReactComponentElement, useEffect, useState } from 'react';
 
-const withAuth = (WrappedComponent) => {
-  const WithAuth = (props) => {
+const withAuth = (WrappedComponent: any) => {
+  const WithAuth = (props:any) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(false);
     const router = useRouter()
@@ -36,7 +36,7 @@ const withAuth = (WrappedComponent) => {
     return <WrappedComponent {...props} />;
   };
 
-  WithAuth.getInitialProps = async (ctx) => {
+  WithAuth.getInitialProps = async (ctx: any) => {
     const wrappedComponentInitialProps = WrappedComponent.getInitialProps
       ? await WrappedComponent.getInitialProps(ctx)
       : {};
