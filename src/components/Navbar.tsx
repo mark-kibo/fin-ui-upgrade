@@ -27,6 +27,7 @@ import { signOut } from "next-auth/react";
 
 export default function Navbar() {
 	const [auth, setAuth] = React.useState(true);
+	const [loading, setLoading]=React.useState(false)
 	const router = useRouter();
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -44,7 +45,10 @@ export default function Navbar() {
 	};
 	const handleLogout = () => {
 		setAnchorEl(null);
+		setLoading(true)
 		signOut()
+		localStorage.removeItem("token")
+		setLoading(false)
 	};
 
 	const iconstyle = "black";
