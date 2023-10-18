@@ -6,10 +6,18 @@ import { usePathname } from "next/navigation";
 import { Footer } from "../Footer";
 import { useSession } from "next-auth/react";
 import style from "@/utils/css/layout.module.css"
+import jwt_decode from "jwt-decode"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname();
-	const{data:session}= useSession();
+	const{data:session}= useSession(); //contains our branch , instituition and token
+	let user=null;
+	if(session){
+		// decode token to get username
+		user=jwt_decode(session?.user.token)
+		// console.log(user)
+	}
+	
 	return (
 		<>
 			<Navbar />
@@ -30,7 +38,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					<h2 className="font-bold text-2xl">
 						{pathname === "/" ? "Main Dashboard" : pathname.split("/")[-1]}
 					</h2>
-					<p className="capitalize text-gray- px-4">Welcome to <span className={`${style.heading2} pl-2`}>{session?.user && session.user.institutionName}</span></p>
+					<p className={`${style.heading2}  capitalize text-gray- px-4`}>Welcome {user?.name}, to {session?.user.institutionName}</p>
 				</div>
 				
 				{children}
