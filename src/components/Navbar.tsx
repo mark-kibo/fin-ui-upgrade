@@ -22,6 +22,8 @@ import { SideBarContext } from "@/context/SideBarContext";
 import FeedSharpIcon from "@mui/icons-material/FeedSharp";
 import logo from "../image/logo1.png";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
+
 
 export default function Navbar() {
 	const [auth, setAuth] = React.useState(true);
@@ -42,7 +44,7 @@ export default function Navbar() {
 	};
 	const handleLogout = () => {
 		setAnchorEl(null);
-		router.push("/login");
+		signOut()
 	};
 
 	const iconstyle = "black";

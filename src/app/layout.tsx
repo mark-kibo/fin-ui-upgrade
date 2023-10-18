@@ -9,6 +9,7 @@ import SideBarProvider, { SideBarContext } from "@/context/SideBarContext";
 import { Suspense } from "react";
 import Loading from "../components/loading";
 import TemporaryDrawer from "@/components/SideBarContainer";
+import Providers from "./Providers";
 
 
 
@@ -31,6 +32,7 @@ export default function RootLayout({
 			<body className={monserrat.className}>
 				<section className="bg-[#ededed]">
 					{/* wrapp everything with my side bar */}
+					<Providers>
 					<SideBarProvider>
 						<TemporaryDrawer/>
 						<Suspense fallback={<Loading />}>
@@ -38,6 +40,7 @@ export default function RootLayout({
 						</Suspense>
 
 					</SideBarProvider>
+					</Providers>
 
 				</section>
 			</body>

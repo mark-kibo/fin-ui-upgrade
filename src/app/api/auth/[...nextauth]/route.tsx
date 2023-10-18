@@ -24,7 +24,7 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "username", type: "text", placeholder: "agnes" },
+        username: { label: "username", type: "text", name:"userName" },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
@@ -33,8 +33,8 @@ const handler = NextAuth({
           password: string;
         };
         const res =await axios.post("https://localhost:7279/api/v1/users/login", {
-            userName:"agnes4",
-            password:"pass3456"
+            userName:credentials.username,
+            password:credentials.password
         }, {
             httpsAgent: new https.Agent({ rejectUnauthorized: false }),
         })  

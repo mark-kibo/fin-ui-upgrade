@@ -12,8 +12,10 @@ import {
 import styles from "@/utils/css/layout.module.css"
 import axios from "axios"
 import { NextResponse } from 'next/server';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
+import { signIn, signOut, useSession } from 'next-auth/react';
+
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
@@ -54,22 +56,61 @@ function Login() {
       // }
     
   }
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/"
   
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true)
-    getLoginToken(data)
-      .then((data) => {
-          if (data) {
-            setLoading(false)
-            router.push("/");
-          }
+    // getLoginToken(data)
+    //   .then((data) => {
+    //       if (data) {
+    //         setLoading(false)
+    //         router.push("/");
+    //       }
      
-      })
-      .catch((error) => {
-        setLoading(false)
-        // The error state has already been set in getLoginToken function.
+    //   })
+    //   .catch((error) => {
+    //     setLoading(false)
+    //     // The error state has already been set in getLoginToken function.
+    //   });
+    // signIn().catch(()=>{
+    //   setLoading(false)
+    //   setError({
+    //     type: "error",
+    //     message: "Invalid credentials or an error occurred."
+    //   })
+    // })
+
+    try {
+      setLoading(true);
+    
+
+      const res = await signIn("credentials", {
+        redirect: false,
+        username: data.userName,
+        password: data.password,
+        callbackUrl,
       });
+
+      setLoading(false);
+
+      console.log(res);
+      if (!res?.error) {
+        router.push("/");
+      } else {
+        setError(
+          {
+            type:"error",
+            message:"invalid"
+          }
+        )
+      }
+    } catch (error: any) {
+      setLoading(false);
+      setError(error);
+    }
+  
       setLoading(false)
   }
 
