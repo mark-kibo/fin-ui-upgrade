@@ -23,6 +23,7 @@ import FeedSharpIcon from "@mui/icons-material/FeedSharp";
 import logo from "../image/logo1.png";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
+import Loading from "./loading";
 
 
 export default function Navbar() {
@@ -43,11 +44,12 @@ export default function Navbar() {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-	const handleLogout = () => {
+	const  handleLogout = async() => {
 		setAnchorEl(null);
 		setLoading(true)
-		signOut()
-		localStorage.removeItem("token")
+		await signOut()
+		// console.log(res.)
+
 		setLoading(false)
 	};
 
@@ -56,7 +58,9 @@ export default function Navbar() {
 	const anchor = "left";
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
+		<>
+		{loading ? (<Loading/>) : (
+			<Box sx={{ flexGrow: 1 }}>
 			<AppBar
 			
 				sx={{ backgroundColor: "#fafafa", backdropFilter: "blur 10px"}}
@@ -169,5 +173,8 @@ export default function Navbar() {
 				</Toolbar>
 			</AppBar>
 		</Box>
+		)}
+		
+		</>
 	);
 }

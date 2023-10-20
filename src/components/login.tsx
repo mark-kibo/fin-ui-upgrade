@@ -40,7 +40,7 @@ function Login() {
       setError(null)
 
       const res = await signIn("credentials", {
-        redirect: false,
+        redirect: true,
         username: data.userName,
         password: data.password,
         callbackUrl
@@ -52,6 +52,7 @@ function Login() {
       console.log(res);
       if (!res?.error) {
         // router.push(callbackUrl);
+        // res?.url
         setLoading(false);
 
       } else {
@@ -59,13 +60,16 @@ function Login() {
         setError(
           {
             type: "error",
-            message: "username or password does not exist"
+            message: "username or password does not exist  or network issue"
           }
         )
       }
     } catch (error: any) {
       setLoading(false);
-      setError(error);
+      setError({
+        type:"warning",
+        message:"server is down"
+      });
     }
 
     setLoading(false)
@@ -99,7 +103,7 @@ function Login() {
 
               <div className='mb-4'>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-                <input type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
+                <input required type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
               </div>
               {/* <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
                 <div>
