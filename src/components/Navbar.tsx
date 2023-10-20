@@ -22,7 +22,7 @@ import { SideBarContext } from "@/context/SideBarContext";
 import FeedSharpIcon from "@mui/icons-material/FeedSharp";
 import logo from "../image/logo1.png";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Loading from "./loading";
 
 
@@ -30,6 +30,7 @@ export default function Navbar() {
 	const [auth, setAuth] = React.useState(true);
 	const [loading, setLoading]=React.useState(false)
 	const router = useRouter();
+	const{data:session} = useSession()
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -147,7 +148,9 @@ export default function Navbar() {
 								onClick={handleMenu}
 								color="inherit"
 							>
-								<AccountCircle className={iconstyle} />
+								{/* <AccountCircle className={iconstyle} />
+								 */}
+								 <img width={30} height={20} src={session?.user?.image} alt="profile pic" className="rounded-lg items-center justify-center"/>
 							</IconButton>
 							<Menu
 								id="menu-appbar"
