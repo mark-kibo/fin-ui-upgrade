@@ -17,6 +17,7 @@ import Loading from './loading';
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
   const [loading, setLoading] = useState(false)
 
 
@@ -53,8 +54,11 @@ function Login() {
       if (!res?.error) {
         // router.push(callbackUrl);
         // res?.url
+        setSuccess({
+          type:"success",
+          message:"Successfull, redirecting ..."
+        })
         setLoading(false);
-
       } else {
         //if logins are not correct set error state to the required data
         setError(
@@ -95,6 +99,7 @@ function Login() {
             </div>
             <div className='py-2'>
               {error ? (<MessageHandler type={error?.type} message={error?.message} />) : ""}
+              {success ? (<MessageHandler type={success?.type} message={success?.message} />) : ""}
 
             </div>
             <form method='POST' onSubmit={(e) => {
