@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
+    // "jsx": "preserve",
     "target": "es5",
     "lib": [
       "dom",
@@ -16,7 +16,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "jsx": "preserve",
+    "jsx": "preserve",
     // "types": ["json5"],
     "incremental": true,
     "plugins": [
