@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -20,6 +21,8 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import SubSideBar from "./SideNavContainer/Subcontainer";
 import logo from "../image/logo.png";
 import Image from "next/image";
+
+
 type Anchor = "left";
 const DrawerHeader = styled("div")(({ theme }) => ({
 	display: "flex",
@@ -47,61 +50,19 @@ export default function TemporaryDrawer() {
 
 	const toggleDrawer =
 		(anchor: Anchor, open: boolean) =>
-		(event: React.KeyboardEvent | React.MouseEvent) => {
-			if (
-				event.type === "keydown" &&
-				((event as React.KeyboardEvent).key === "Tab" ||
-					(event as React.KeyboardEvent).key === "Shift")
-			) {
-				return;
-			}
+			(event: React.KeyboardEvent | React.MouseEvent) => {
+				if (
+					event.type === "keydown" &&
+					((event as React.KeyboardEvent).key === "Tab" ||
+						(event as React.KeyboardEvent).key === "Shift")
+				) {
+					return;
+				}
 
-			setState({ ...state, [anchor]: open });
-		};
+				setState({ ...state, [anchor]: open });
+			};
 
-	const list = (anchor: Anchor) => (
-		<Box
-			sx={{ auto: 250, flexShrink: 0 }}
-			role="presentation"
-			onClick={toggleDrawer(anchor, false)}
-			onKeyDown={toggleDrawer(anchor, false)}
-		>
-			<List>
-				<ListItem disablePadding>
-					<ListItemButton>
-						<ListItemText primary="mark">
-							<ListItemText primary="felix" />
-						</ListItemText>
-					</ListItemButton>
-				</ListItem>
-			</List>
-			<List>
-				{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItemButton>
-					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{["All mail", "Trash", "Spam"].map((text, index) => (
-					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItemButton>
-					</ListItem>
-				))}
-			</List>
-		</Box>
-	);
+
 
 	return (
 		<div>
