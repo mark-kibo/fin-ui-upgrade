@@ -1,18 +1,25 @@
-import { GetCookie } from "@/Cookies/GetCookie";
+import type { Metadata } from "next";
 import Dashboard from "@/components/dashboards";
 import Layout from "@/components/layout/page";
 import Providers from "../Providers";
 
 
-export default () => (
-	<Providers>
-	<Layout>
-		<div className="mt-50">
-					
-				<Dashboard />
-			
+export const metadata: Metadata = {
+	title: 'FinFinancials',
+	description: 'Data intergration technologies',
+}
 
-		</div>
+export default () => (
+	<Providers children={undefined}>
+	<Layout children={undefined}>
+		<>
+			<div className="mt-50">
+						
+					<Dashboard />
+				
+
+			</div>
+		</>
 		
 	</Layout>
 	</Providers>

@@ -1,4 +1,4 @@
-
+"use client"
 import React, { useContext, createContext, useEffect, useState } from "react";
 import { MenuContent } from '../json/menu';
 
@@ -45,12 +45,12 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
     }
 
   return (
-    <div>
+    <>
       <SideBarContext.Provider value={value}>
         {children}
       </SideBarContext.Provider>
-    </div>
-  );
+    </>
+  ); 
 };
 
 

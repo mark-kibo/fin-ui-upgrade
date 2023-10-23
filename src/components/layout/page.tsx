@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	if(session){
 		// decode token to get username
 		user=jwt_decode(session?.user.token)
-		// console.log(user)
+		console.log(user)
 	}
 	
 	return (
@@ -38,7 +38,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					<h2 className="font-bold text-2xl">
 						{pathname === "/" ? "Main Dashboard" : pathname.split("/")[-1]}
 					</h2>
-					<p className={`${style.heading2}  capitalize text-gray- px-4`}>Welcome {user?.name}, to {session?.user.institutionName}</p>
+					<p className={`${style.heading2}  capitalize text-gray- px-4`}>Welcome {user?.firstName}, to {session?.user.institutionName}</p>
 				</div>
 				
 				{children}

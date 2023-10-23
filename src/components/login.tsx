@@ -1,21 +1,15 @@
 "use client"
-
-import {
-  Typography
-} from '@mui/material';
 import Link from 'next/link';
 import React, {
-  useState, useEffect, use, ReactEventHandler, ReactNode, useContext
+  useState
 } from 'react';
 import {
   HiUser
 } from "react-icons/hi"
-import styles from "@/utils/css/layout.module.css"
-import axios from "axios"
-import { NextResponse } from 'next/server';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Loading from './loading';
 
 
@@ -23,57 +17,31 @@ import Loading from './loading';
 function Login() {
   const [data, setData] = useState({})
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
   const [loading, setLoading] = useState(false)
-  const {data:session}=useSession()
+
 
   const router = useRouter()
-  const https = require('https')
+
 
   // handle login 
-  function handleChange(e) {
+  function handleChange(e: { target: { name: any; value: any; }; }) {
     setData({ ...data, [e.target.name]: e.target.value })
     console.log(data)
   }
 
-  async function getLoginToken(data) {
-    try {
-
-      const response = await fetch("/api/home", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-
-
-      const resData = await response.json()
-      return resData;
-    } catch {
-      setError({
-        type: "error",
-        message: "Invalid credentials or an error occurred.",
-      });
-      console.error(error);
-    }
-
-    // if(response.status !== 200){
-    //   setError({
-    //     type:"error",
-    //     message:"Invalid credentials"
-    //   })
-    // }
-
-  }
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/"
+  const callbackUrl = searchParams.get("callbackUrl")
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true)
     try {
       setLoading(true);
-      setError({})
+      setError(null)
 
       const res = await signIn("credentials", {
-        redirect: false,
+        redirect: true,
         username: data.userName,
         password: data.password,
         callbackUrl
@@ -84,33 +52,34 @@ function Login() {
 
       console.log(res);
       if (!res?.error) {
-        setTimeout(
-          () => {
-
-          }, 3000
-        )
-        localStorage.setItem("token", session?.user.token)
-        router.push("/");
+        // router.push(callbackUrl);
+        // res?.url
+        setSuccess({
+          type:"success",
+          message:"Successfull, redirecting ..."
+        })
         setLoading(false);
-
       } else {
-
+        //if logins are not correct set error state to the required data
         setError(
           {
             type: "error",
-            message: "username or password does not exist"
+            message: "username or password does not exist  or network issue"
           }
         )
       }
     } catch (error: any) {
       setLoading(false);
-      setError(error);
+      setError({
+        type:"warning",
+        message:"server is down"
+      });
     }
 
     setLoading(false)
   }
 
-  // fetch token data from api
+
 
 
   return (
@@ -130,6 +99,7 @@ function Login() {
             </div>
             <div className='py-2'>
               {error ? (<MessageHandler type={error?.type} message={error?.message} />) : ""}
+              {success ? (<MessageHandler type={success?.type} message={success?.message} />) : ""}
 
             </div>
             <form method='POST' onSubmit={(e) => {
@@ -138,7 +108,7 @@ function Login() {
 
               <div className='mb-4'>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-                <input type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe" id="Username" />
+                <input required type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
               </div>
               {/* <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
                 <div>
