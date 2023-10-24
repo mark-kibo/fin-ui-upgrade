@@ -16,8 +16,8 @@ import Providers from "./Providers";
 const monserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'FinFinancials',
-  description: 'Data intergration technologies',
+	title: 'FinFinancials',
+	description: 'Data intergration technologies',
 }
 
 export default function RootLayout({
@@ -29,17 +29,23 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
+			<head>
+				{/* <meta
+					http-equiv="Content-Security-Policy"
+					content="default-src 'self';"
+				/> */}
+			</head>
 			<body className={monserrat.className}>
 				<section className="bg-[#ededed]">
 					{/* wrapp everything with my side bar */}
 					<Providers>
-					<SideBarProvider>
-						<TemporaryDrawer/>
-						<Suspense fallback={<Loading />}>
-							{children}
-						</Suspense>
+						<SideBarProvider>
+							<TemporaryDrawer />
+							<Suspense fallback={<Loading />}>
+								{children}
+							</Suspense>
 
-					</SideBarProvider>
+						</SideBarProvider>
 					</Providers>
 
 				</section>

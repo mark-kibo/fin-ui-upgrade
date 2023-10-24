@@ -67,7 +67,7 @@ function signup() {
                     </div>
                     <Link href='/login'><button className='bg-[#1F5780] rounded-md p-3 sm:col-span-2 w-full text-white' type="submit">Sign Up</button></Link>
                 </form>
-                <p className='flex items-center: md:flex-row justify-center items-center cursor-pointer inline-block align-bottom mt-5'>
+                <p className='flex items-center: md:flex-row justify-center items-center cursor-pointer  align-bottom mt-5'>
                 <a>Already have an account? </a><Link href='/login'><span className='font-bold'>Login</span></Link>
                 </p>
                 <div className="flex justify-center items-center h-4">
