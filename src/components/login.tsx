@@ -55,8 +55,6 @@ function Login() {
 
       console.log(res);
       if (!res?.error) {
-        // router.push(callbackUrl);
-        // res?.url
         setSuccess({
           type:"success",
           message:"Successfull, redirecting ..."

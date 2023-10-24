@@ -13,7 +13,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	const{data:session}= useSession(); //contains our branch , instituition and token
 	let user=null;
 	if(session){
-		// decode token to get username
 		user=jwt_decode(session?.user.token)
 		console.log(user)
 	}
