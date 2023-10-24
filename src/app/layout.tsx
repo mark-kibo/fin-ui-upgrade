@@ -1,53 +1,40 @@
-
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-
-
 
 import SideBarProvider from "@/context/SideBarContext";
 import { Suspense } from "react";
 import Loading from "../components/loading";
 import TemporaryDrawer from "@/components/SideBarContainer";
 import Providers from "./Providers";
-
-
+import Head from "next/head";
 
 const monserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: 'FinFinancials',
-	description: 'Data intergration technologies',
-}
+	title: "FinFinancials",
+	description: "Data intergration technologies",
+};
 
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-
-
 	return (
 		<html lang="en">
-			<head>
-				{/* <meta
-					http-equiv="Content-Security-Policy"
-					content="default-src 'self';"
-				/> */}
-			</head>
+			<Head children={undefined}>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+			</Head>
 			<body className={monserrat.className}>
 				<section className="bg-[#ededed]">
 					{/* wrapp everything with my side bar */}
 					<Providers>
 						<SideBarProvider>
-							<TemporaryDrawer/>
-							<Suspense fallback={<Loading />}>
-								{children}
-							</Suspense>
-
+							<TemporaryDrawer />
+							<Suspense fallback={<Loading />}>{children}</Suspense>
 						</SideBarProvider>
 					</Providers>
-
 				</section>
 			</body>
 		</html>
