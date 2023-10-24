@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
 import { signIn } from 'next-auth/react';
 import Loading from './loading';
+import { decryptRijndael, encryptRijndael } from '@/Encryption/encryptToken';
 import DOMPurify from 'dompurify';
 
 
@@ -51,6 +52,12 @@ function Login() {
   const router = useRouter()
 
 
+  // handle login 
+  function handleChange(e: { target: { name: any; value: any; }; }) {
+    setData({ ...data, [e.target.name]: e.target.value })
+    console.log(data)
+  }
+
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl")
 
@@ -61,34 +68,56 @@ function Login() {
       setLoading(true);
       setError(null)
 
-      const res = await signIn("credentials", {
-        redirect: true,
-        username: data.userName,
-        password: data.password,
-        callbackUrl
+    
 
+      const res = await signIn("credentials", {
+        redirect: false,
+        username:  decryptRijndael(data.userName), //decrypt my username since in the object its encrypted
+        password: data.password,
+       
+
+      }).then(({ok, error})=>{
+            if (ok) {
+              
+              setSuccess(
+                {
+                  type: "success",
+                  message: `successfully logged in!, redirecting.......`,
+                }
+              )
+              setLoading(true)
+
+              
+              router.push(`${callbackUrl}`);
+              setLoading(false)
+          } else {
+            setError(
+                  {
+                    type: "error",
+                    message: "username or password does not exist  or network issue"
+                  }
+                )
+          }
       });
 
 
 
-      console.log(res);
-      if (!res?.error) {
-        // router.push(callbackUrl);
-        // res?.url
-        setSuccess({
-          type: "success",
-          message: "Successfull, redirecting ..."
-        })
-        setLoading(false);
-      } else {
-        //if logins are not correct set error state to the required data
-        setError(
-          {
-            type: "error",
-            message: "username or password does not exist  or network issue"
-          }
-        )
-      }
+      // console.log(res);
+      // if (!res?.error) {
+      //   setSuccess({
+      //     type:"success",
+      //     message:"Successfull, redirecting ..."
+      //   })
+      //   setLoading(false);
+      // } else {
+      //   //if logins are not correct set error state to the required data
+      //   setError(
+      //     {
+      //       type: "error",
+      //       message: "username or password does not exist  or network issue"
+      //     }
+      //   )
+      // }
     } catch (error: any) {
       setLoading(false);
       setError({

@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent) => {
       if (!user) {
         router.push('/login');
       }
-    }, []);
+    }, [router]);
 
     // if (!user) {
     //   // You can render a loading component or an alternative UI here

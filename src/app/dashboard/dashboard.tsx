@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 }
 
 export default () => (
-	<Providers children={undefined}>
-	<Layout children={undefined}>
+	<Providers>
+	<Layout>
 		<>
 			<div className="mt-50">
 						

@@ -1,22 +1,24 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-
 import CloseIcon from '@mui/icons-material/Close';
-// props includes the message and the type of message(eg Success, failure)
-const MessageHandler = (props) => {
-  // 
 
+interface MessageHandlerProps {
+  type: 'success' | 'info' | 'warning' | 'error' | undefined | string;
+  message: string;
+}
+
+
+const MessageHandler= (props:MessageHandlerProps) => {
   const [open, setOpen] = useState(true);
 
   return (
-    // container box that holds the alert
     <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
-        severity={props.type} 
+          severity={props.type}
           action={
             <IconButton
               aria-label="close"
@@ -25,7 +27,6 @@ const MessageHandler = (props) => {
               onClick={() => {
                 setOpen(false);
               }}
-              // changes the color of the alert based on the type eg success
             >
               <CloseIcon fontSize="inherit" />
             </IconButton>
@@ -37,8 +38,6 @@ const MessageHandler = (props) => {
       </Collapse>
     </Box>
   );
-}
-
+};
 
 export default MessageHandler;
-
