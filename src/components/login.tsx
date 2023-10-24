@@ -111,7 +111,7 @@ function Login() {
 
               <div className='mb-4'>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-                <input autocomplete="off" required type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
+                <input autoComplete="off" required type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
               </div>
               {/* <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
                 <div>
@@ -129,7 +129,7 @@ function Login() {
               </div> */}
               <div className='mb-5'>
                 <label htmlFor="password" className="block mb-2 text-sm  font-medium text-gray-900 dark:text-sky-900">Password</label>
-                <input autocomplete="new-password" type="password" onChange={handleChange} name="password" id="password" placeholder="••••••••" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" required />
+                <input  autoComplete="password" type="password" onChange={handleChange} name="password" id="password" placeholder="••••••••" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" required />
               </div>
               <div className='mb-5'>
                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Language</label>
