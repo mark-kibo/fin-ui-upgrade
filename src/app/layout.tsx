@@ -40,7 +40,7 @@ export default function RootLayout({
 					{/* wrapp everything with my side bar */}
 					<Providers>
 						<SideBarProvider>
-							<TemporaryDrawer />
+							<TemporaryDrawer/>
 							<Suspense fallback={<Loading />}>
 								{children}
 							</Suspense>
