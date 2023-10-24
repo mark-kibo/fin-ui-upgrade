@@ -127,7 +127,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import https from "https";
 import { baseUrl } from "@/utils/constants";
-import { encryptRijndael } from "@/Encryption/encryptToken";
+
 
 interface User {
   id: number;
@@ -162,15 +162,11 @@ export const options: NextAuthOptions = {
           return null; // Case handling when credentials are undefined
         }
 
-        const { username, password } = credentials as {
-          username: string;
-          password: string;
-        };
-
+        
         const res = await axios.post(baseUrl + "api/v1/users/login", {
           username: credentials.username,
           password: credentials.password,
-          expiresInMins: 1,
+
         }, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false }),
         });

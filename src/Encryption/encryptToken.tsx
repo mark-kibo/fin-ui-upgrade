@@ -96,9 +96,9 @@ export function decryptRijndael(encryptedData: any) {
 }
 
 // Example usage:
-// const plaintext = 'fintos2000';
-// const encrypted = encryptRijndael(plaintext);
-// console.log('Encrypted:', encrypted);
+const plaintext = 'fintos2000';
+const encrypted = encryptRijndael(plaintext);
+console.log('Encrypted:', encrypted);
 
-// const decrypted = decryptRijndael(encrypted);
-// console.log('Decrypted:', decrypted);
+const decrypted = decryptRijndael(encrypted);
+console.log('Decrypted:', decrypted);
