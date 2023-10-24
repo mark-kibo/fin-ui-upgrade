@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import React, {
-  useState
+  useState, useEffect
 } from 'react';
 import {
   HiUser
@@ -11,24 +11,45 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import MessageHandler from './MessageHandler/MessageHandler';
 import { signIn } from 'next-auth/react';
 import Loading from './loading';
+import DOMPurify from 'dompurify';
 
 
 
 function Login() {
-  const [data, setData] = useState({})
-  const [error, setError] = useState(null)
-  const [success, setSuccess] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [errors, setErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    validateForm();
+  }, [userName, password]);
+  // Validate form 
+  const validateForm = () => {
+    let errors = {};
+
+    if (!userName) {
+      errors.userName = '';  // Leave it empty
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(userName)) {
+      errors.userName = 'Username is invalid! It must start with an alphabetic character.';
+    }
+
+    if (!password) {
+      errors.password = '';
+    } else if (password.length <= 4) {
+      errors.password = 'Password must be more than four characters.';
+    }
+    setErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
 
 
   const router = useRouter()
 
-
-  // handle login 
-  function handleChange(e: { target: { name: any; value: any; }; }) {
-    setData({ ...data, [e.target.name]: e.target.value })
-    console.log(data)
-  }
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl")
@@ -55,8 +76,8 @@ function Login() {
         // router.push(callbackUrl);
         // res?.url
         setSuccess({
-          type:"success",
-          message:"Successfull, redirecting ..."
+          type: "success",
+          message: "Successfull, redirecting ..."
         })
         setLoading(false);
       } else {
@@ -71,8 +92,8 @@ function Login() {
     } catch (error: any) {
       setLoading(false);
       setError({
-        type:"warning",
-        message:"server is down"
+        type: "warning",
+        message: "server is down"
       });
     }
 
@@ -108,25 +129,34 @@ function Login() {
 
               <div className='mb-4'>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">User Name</label>
-                <input required type="text" onChange={handleChange} name="userName" id="name" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" placeholder="John Doe"  />
+                <input autoComplete="off" onChange={(e) => {
+                  const originalValue = e.target.value;
+                  const sanitizedValue = DOMPurify.sanitize(originalValue);
+                  console.log('Original Value:', originalValue);
+                  console.log('Sanitized Value:', sanitizedValue);
+                  setUserName(sanitizedValue);
+                }}
+                  type="text" name="userName" id="name" required className={`bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5 ${errors.userName ? 'border-red-600 text-red-600 text-sm' : ''}`} placeholder="John Doe" />
+                {errors.userName && (
+                  <p className="text-red-600 text-sm">{errors.userName}</p>
+                )}
+
               </div>
-              {/* <div className="grid gap-4 mb-6 sm:grid-cols-2 ">
-                <div>
-                  <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Institution</label>
-                  <select id="category" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5">
-                    <option value="TV">Daimas Clove Sacco</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Branch</label>
-                  <select id="category" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5">
-                    <option value="TV">001 Head office</option>
-                  </select>
-                </div>
-              </div> */}
-              <div className='mb-5'>
-                <label htmlFor="password" className="block mb-2 text-sm  font-medium text-gray-900 dark:text-sky-900">Password</label>
-                <input type="password" onChange={handleChange} name="password" id="password" placeholder="••••••••" className="bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5" required />
+              <div className='mb-4'>
+
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Password</label>
+                <input autoComplete="Password" onChange={(e) => {
+                  const originalValue = e.target.value;
+                  const sanitizedValue = DOMPurify.sanitize(originalValue);
+                  console.log('Original Value:', originalValue);
+                  console.log('Sanitized Value:', sanitizedValue);
+                  setPassword(sanitizedValue);
+                }}
+                  type="password"
+                  type="password" name="password" id="password" required className={`bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5 ${errors.password ? 'border-red-600 text-red-600 text-sm' : ''}`} placeholder="Password" />
+                {errors.password && (
+                  <p className="text-red-600 text-sm">{errors.password}</p>
+                )}
               </div>
               <div className='mb-5'>
                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-900">Language</label>

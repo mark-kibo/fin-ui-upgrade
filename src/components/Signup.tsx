@@ -38,8 +38,8 @@ const signup = () => {
 		}
 		if (!phoneNumber) {
     errors.phoneNumber = '';  // Leave it empty
-} else if (!/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phoneNumber)) {
-    errors.phoneNumber = 'Phone number is not in the correct format (e.g., 123-456-7890)';
+} else if (!/^[0-9]{4}-[0-9]{3}-[0-9]{3}$/.test(phoneNumber)) {
+    errors.phoneNumber = 'Phone number is not in the correct format (e.g., 1234-567-890)';
 }
 
 		
@@ -127,8 +127,16 @@ const signup = () => {
                         </div>
                         <div className='mb-1'>
                             <label htmlFor="phone" className="block mb-2 text-sm  text-[#1F5780] font-medium dark:text-white">Phone</label>
-                            <input onChange={(e) => setPhoneNumber(e.target.value)} type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder='070000000' className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-							{errors.phoneNumber  && <p className='text-red'>{errors.phoneNumber }</p>}
+                            <input onChange={(e) => setPhoneNumber(e.target.value)} type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  required
+    className={`bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ${
+      errors.phoneNumber ? 'border-red-500 text-red-500 text-sm' : ''
+    }`}
+    placeholder= "0700-000-000"
+  />
+  {errors.phoneNumber && (
+    <p className="text-red-500 text-sm">{errors.phoneNumber}</p>
+  )}
+							
                         </div>
                         <div className='mb-1'>
                             <label htmlFor="organization" className="block mb-2 text-sm text-[#1F5780]  font-medium dark:text-white">Institution Name</label>
