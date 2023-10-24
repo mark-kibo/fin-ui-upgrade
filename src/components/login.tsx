@@ -44,31 +44,53 @@ function Login() {
     
 
       const res = await signIn("credentials", {
-        redirect: true,
+        redirect: false,
         username:  decryptRijndael(data.userName), //decrypt my username since in the object its encrypted
         password: data.password,
-        callbackUrl
+       
 
+      }).then(({ok, error})=>{
+            if (ok) {
+              
+              setSuccess(
+                {
+                  type: "success",
+                  message: `successfully logged in!, redirecting.......`,
+                }
+              )
+              setLoading(true)
+
+              
+              router.push(`${callbackUrl}`);
+              setLoading(false)
+          } else {
+            setError(
+                  {
+                    type: "error",
+                    message: "username or password does not exist  or network issue"
+                  }
+                )
+          }
       });
 
 
 
-      console.log(res);
-      if (!res?.error) {
-        setSuccess({
-          type:"success",
-          message:"Successfull, redirecting ..."
-        })
-        setLoading(false);
-      } else {
-        //if logins are not correct set error state to the required data
-        setError(
-          {
-            type: "error",
-            message: "username or password does not exist  or network issue"
-          }
-        )
-      }
+      // console.log(res);
+      // if (!res?.error) {
+      //   setSuccess({
+      //     type:"success",
+      //     message:"Successfull, redirecting ..."
+      //   })
+      //   setLoading(false);
+      // } else {
+      //   //if logins are not correct set error state to the required data
+      //   setError(
+      //     {
+      //       type: "error",
+      //       message: "username or password does not exist  or network issue"
+      //     }
+      //   )
+      // }
     } catch (error: any) {
       setLoading(false);
       setError({
