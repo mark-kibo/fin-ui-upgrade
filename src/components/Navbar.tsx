@@ -150,7 +150,7 @@ export default function Navbar() {
 							>
 								{/* <AccountCircle className={iconstyle} />
 								 */}
-								 <Image width={30} height={20} src={session?.user?.image ? session?.user?.image: ""} alt="profile pic" className="rounded-lg items-center justify-center"/>
+								 <img width={30} height={20} src={session?.user?.image ? session?.user?.image: "https://robohash.org/autquiaut.png?size=50x50&set=set1"} alt="profile pic" className="rounded-lg items-center justify-center"/>
 							</IconButton>
 							<Menu
 								id="menu-appbar"
