@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Chart from 'react-apexcharts';
 
-const BarChart: React.FC = () => {
+
+const BarChart= () => {
   const [ReactApexChart, setChart] = useState(null);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ const BarChart: React.FC = () => {
       },
     },
     colors: [
-      ({ value }: { value: number }) => (value < 55 ? '#7E36AF' : '#D9534F'),
-      ({ value }: { value: number }) => (value < 111 ? '#7E36AF' : '#D9534F'),
+      ( value ) => (value < 55 ? '#7E36AF' : '#D9534F'),
+      ( value ) => (value < 111 ? '#7E36AF' : '#D9534F'),
     ],
     grid: {},
     tooltip: {

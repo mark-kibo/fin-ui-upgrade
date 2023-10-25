@@ -27,7 +27,7 @@ interface MenuData {
 const SideBar: React.FC = () => {
   const { entryStore, setSubContainer, setSubContainerEntries } = useContext(SideBarContext);
   // level 0 icon
-  const icons = {
+  const icons: Record<string, React.ReactElement> = {
     'Finfinancials': <FinfinancialsIcon />,
     'Inventory': <InventoryIcon />,
     'Fixed Assets': <FixedAssetsIcon />,
@@ -36,7 +36,7 @@ const SideBar: React.FC = () => {
     'Payroll': <PayrollIcon />,
     'Global Administration': <GlobalAdministrationIcon/>,
     'Consolidated Reports': <ConsolidatedReportsIcon />,
-};
+  };
 
   // Specify the menus to display when landing on the dashboard
   const initialMenusToDisplay = [

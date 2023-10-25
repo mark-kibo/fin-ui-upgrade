@@ -28,9 +28,9 @@ import Loading from "./loading";
 
 export default function Navbar() {
 	const [auth, setAuth] = React.useState(true);
-	const [loading, setLoading]=React.useState(false)
+	const [loading, setLoading] = React.useState(false)
 	const router = useRouter();
-	const{data:session} = useSession()
+	const { data: session } = useSession()
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -45,7 +45,7 @@ export default function Navbar() {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-	const  handleLogout = async() => {
+	const handleLogout = async () => {
 		setAnchorEl(null);
 		// setLoading(true)
 		signOut()
@@ -60,124 +60,130 @@ export default function Navbar() {
 
 	return (
 		<>
-		{loading ? (<Loading/>) : (
-			<Box sx={{ flexGrow: 1 }}>
-			<AppBar
-			
-				sx={{ backgroundColor: "#fafafa", backdropFilter: "blur 10px"}}
-				className="flex justify-between h-15 text-black"
-			>
-				<Toolbar className="flex justify-between">
-					<IconButton
-						size="large"
-						aria-label="account of current user"
-						aria-controls="menu-appbar"
-						aria-haspopup="true"
-						onClick={() => setState({ ...state, [anchor]: true })}
-						color="inherit"
-					>
-						<MenuIcon className={iconstyle} />
-						<Image
-							width={200}
-							height={30}
-							src={logo}
-							className="pl-2"
-							alt="logo"
-						/>
-					</IconButton>
+			{loading ? (<Loading />) : (
+				<Box sx={{ flexGrow: 1 }}>
+					<AppBar
 
-					{auth && (
-						<div className="flex">
-							<Typography fontSize={14} component="div">
-								<Tooltip title="Help" arrow className="text-blue">
-									<IconButton
-										size="large"
-										edge="start"
-										color="inherit"
-										aria-label="menu"
-										sx={{ mr: 2 }}
-									>
-										<HelpOutlineRoundedIcon className={iconstyle} />
-									</IconButton>
-								</Tooltip>
-							</Typography>
-							<Typography fontSize={14} component="div">
-								<Tooltip title="Contact us" arrow className="text-blue">
-									<IconButton
-										size="large"
-										edge="start"
-										color="inherit"
-										aria-label="menu"
-										sx={{ mr: 2 }}
-									>
-										<AddIcCallSharpIcon />
-									</IconButton>
-								</Tooltip>
-							</Typography>
-							<Typography fontSize={14} component="div">
-								<Tooltip title="About" arrow className="text-blue">
-									<IconButton
-										size="large"
-										edge="start"
-										color="inherit"
-										aria-label="menu"
-										sx={{ mr: 2 }}
-									>
-										<FeedSharpIcon className={iconstyle} />
-									</IconButton>
-								</Tooltip>
-							</Typography>
-							<Typography fontSize={14} component="div">
-								<Tooltip title="Change password" arrow className="text-blue">
-									<IconButton
-										size="large"
-										edge="start"
-										color="inherit"
-										aria-label="menu"
-										sx={{ mr: 2 }}
-									>
-										<LockOpenSharpIcon className={iconstyle} />
-									</IconButton>
-								</Tooltip>
-							</Typography>
+						sx={{ backgroundColor: "#fafafa", backdropFilter: "blur 10px" }}
+						className="flex justify-between h-15 text-black"
+					>
+						<Toolbar className="flex justify-between">
 							<IconButton
 								size="large"
 								aria-label="account of current user"
 								aria-controls="menu-appbar"
 								aria-haspopup="true"
-								onClick={handleMenu}
+								onClick={() => setState({ ...state, [anchor]: true })}
 								color="inherit"
 							>
-								{/* <AccountCircle className={iconstyle} />
-								 */}
-								 <img width={30} height={20} src={session?.user?.image ? session?.user?.image: "https://robohash.org/autquiaut.png?size=50x50&set=set1"} alt="profile pic" className="rounded-lg items-center justify-center"/>
+								<MenuIcon className={iconstyle} />
+								<Image
+									width={200}
+									height={30}
+									src={logo}
+									className="pl-2"
+									alt="logo"
+								/>
 							</IconButton>
-							<Menu
-								id="menu-appbar"
-								anchorEl={anchorEl}
-								anchorOrigin={{
-									vertical: "top",
-									horizontal: "right",
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: "top",
-									horizontal: "right",
-								}}
-								open={Boolean(anchorEl)}
-								onClose={handleClose}
-							>
-								<MenuItem onClick={handleClose}>Profile</MenuItem>
-								<MenuItem onClick={handleClose}>My account</MenuItem>
-								<MenuItem onClick={handleLogout}>Log out</MenuItem>
-							</Menu>
-						</div>
-					)}
-				</Toolbar>
-			</AppBar>
-		</Box>
-		)}
-		
+
+							{auth && (
+								<div className="flex">
+									<Typography fontSize={14} component="div">
+										<Tooltip title="Help" arrow className="text-blue">
+											<IconButton
+												size="large"
+												edge="start"
+												color="inherit"
+												aria-label="menu"
+												sx={{ mr: 2 }}
+											>
+												<HelpOutlineRoundedIcon className={iconstyle} />
+											</IconButton>
+										</Tooltip>
+									</Typography>
+									<Typography fontSize={14} component="div">
+										<Tooltip title="Contact us" arrow className="text-blue">
+											<IconButton
+												size="large"
+												edge="start"
+												color="inherit"
+												aria-label="menu"
+												sx={{ mr: 2 }}
+											>
+												<AddIcCallSharpIcon />
+											</IconButton>
+										</Tooltip>
+									</Typography>
+									<Typography fontSize={14} component="div">
+										<Tooltip title="About" arrow className="text-blue">
+											<IconButton
+												size="large"
+												edge="start"
+												color="inherit"
+												aria-label="menu"
+												sx={{ mr: 2 }}
+											>
+												<FeedSharpIcon className={iconstyle} />
+											</IconButton>
+										</Tooltip>
+									</Typography>
+									<Typography fontSize={14} component="div">
+										<Tooltip title="Change password" arrow className="text-blue">
+											<IconButton
+												size="large"
+												edge="start"
+												color="inherit"
+												aria-label="menu"
+												sx={{ mr: 2 }}
+											>
+												<LockOpenSharpIcon className={iconstyle} />
+											</IconButton>
+										</Tooltip>
+									</Typography>
+									<IconButton
+										size="large"
+										aria-label="account of current user"
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										onClick={handleMenu}
+										color="inherit"
+									>
+										{/* <AccountCircle className={iconstyle} />
+								 */}
+										<Image
+											width={30}
+											height={20}
+											src={session?.user?.image ? session?.user?.image : ""}
+											alt="profile pic"
+											className="rounded-lg items-center justify-center"
+										/>
+									</IconButton>
+									<Menu
+										id="menu-appbar"
+										anchorEl={anchorEl}
+										anchorOrigin={{
+											vertical: "top",
+											horizontal: "right",
+										}}
+										keepMounted
+										transformOrigin={{
+											vertical: "top",
+											horizontal: "right",
+										}}
+										open={Boolean(anchorEl)}
+										onClose={handleClose}
+									>
+										<MenuItem onClick={handleClose}>Profile</MenuItem>
+										<MenuItem onClick={handleClose}>My account</MenuItem>
+										<MenuItem onClick={handleLogout}>Log out</MenuItem>
+									</Menu>
+								</div>
+							)}
+						</Toolbar>
+					</AppBar>
+				</Box>
+			)}
+
 		</>
 	);
 }

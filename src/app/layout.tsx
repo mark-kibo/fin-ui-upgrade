@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<Head children={undefined}>
+			<Head>
 				<link rel="icon" href="/favicon.ico" sizes="any" />
 			</Head>
 			<body className={monserrat.className}>

@@ -34,14 +34,14 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/dashlayout.jsx",
-    "src/components/ApexCharts/AreaChart.tsx",
-    "src/components/ApexCharts/barChart.tsx",
-    "src/components/ApexCharts/ColumnChart.tsx",
-    "src/components/ApexCharts/PieChart.tsx",
+    "src/components/ApexCharts/AreaChart.jsx",
+    "src/components/ApexCharts/barChart.jsx",
+    "src/components/ApexCharts/ColumnChart.jsx",
+    "src/components/ApexCharts/PieChart.jsx",
     "src/components/SideBarContent.tsx",
     "src/components/SideNavContainer/Subcontainer.tsx",
     "src/context/SideBarContext.tsx"
-  ],
+, "src/components/layout/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
+import Alert, { AlertColor } from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface MessageHandlerProps {
-  type: 'success' | 'info' | 'warning' | 'error' | undefined | string;
+  type: AlertColor;
   message: string;
 }
 

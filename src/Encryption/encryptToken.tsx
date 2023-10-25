@@ -1,80 +1,3 @@
-// const CryptoJS = require('crypto-js');
-
-// function encryptData(data, key) {
-//   const iv = key; // You can use the same key for the IV
-//   const encryptedData = CryptoJS.AES.encrypt(data, key, {
-//     keySize: 128 / 8,
-//     iv: iv,
-//     mode: CryptoJS.mode.CBC,
-//     padding: CryptoJS.pad.Pkcs7,
-//   });
-//   return encryptedData.toString();
-// }
-
-// function decryptData(encryptedData, key) {
-//   const iv = key; // You can use the same key for the IV
-//   const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key, {
-//     keySize: 128 / 8,
-//     iv: iv,
-//     mode: CryptoJS.mode.CBC,
-//     padding: CryptoJS.pad.Pkcs7,
-//   });
-//   return decryptedBytes.toString(CryptoJS.enc.Utf8);
-// }
-
-// // Example usage:
-// const key = CryptoJS.enc.Utf8.parse('8080808080808080');
-// const plaintext = 'fintos2000';
-// const encrypted = encryptData(plaintext, key);
-
-// console.log('Encrypted:', encrypted);
-
-// const decrypted = decryptData(encrypted, key);
-// console.log('Decrypted:', decrypted);
-
-
-// ----------------------------------------------------------------------------------------------------
-
-// const CryptoJS = require('crypto-js');
-
-// function encryptData(message, phrase) {
-//   const passPhrase = phrase.toLowerCase();
-//   const key = CryptoJS.MD5(passPhrase).toString();
-  
-//   const encrypted = CryptoJS.TripleDES.encrypt(message, key, {
-//     mode: CryptoJS.mode.ECB,
-//     padding: CryptoJS.pad.Pkcs7
-//   });
-
-//   return encrypted.toString();
-// }
-
-// function decryptData(encryptedMessage, phrase) {
-//   const passPhrase = phrase.toLowerCase();
-//   const key = CryptoJS.MD5(passPhrase).toString();
-
-//   const decrypted = CryptoJS.TripleDES.decrypt(encryptedMessage, key, {
-//     mode: CryptoJS.mode.ECB,
-//     padding: CryptoJS.pad.Pkcs7
-//   });
-
-//   return CryptoJS.enc.Utf8.stringify(decrypted);
-// }
-
-// // Example usage:
-// const message = 'fintos2000';
-// const phrase = 'Fintech'; // Replace with your key
-
-// const encryptedMessage = encryptData(message, phrase);
-// console.log('Encrypted:', encryptedMessage);
-
-// const decryptedMessage = decryptData(encryptedMessage, phrase);
-// console.log('Decrypted:', decryptedMessage);
-
-
-
-// -----------------------------------------------------
-
 const crypto = require('crypto');
 
 // The key and initialization vector (IV): change them for your application
@@ -95,10 +18,12 @@ export function decryptRijndael(encryptedData: any) {
   return decrypted;
 }
 
-// Example usage:
-const plaintext = 'fintos2000';
-const encrypted = encryptRijndael(plaintext);
-console.log('Encrypted:', encrypted);
+// for testing
 
-const decrypted = decryptRijndael(encrypted);
-console.log('Decrypted:', decrypted);
+// // Example usage:
+// const plaintext = 'fintos2000';
+// const encrypted = encryptRijndael(plaintext);
+// console.log('Encrypted:', encrypted);
+
+// const decrypted = decryptRijndael(encrypted);
+// console.log('Decrypted:', decrypted);

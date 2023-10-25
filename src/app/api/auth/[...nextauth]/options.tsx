@@ -127,6 +127,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import https from "https";
 import { baseUrl } from "@/utils/constants";
+import { JWT } from "next-auth/jwt";
 
 
 interface User {
@@ -154,7 +155,7 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "username", type: "text", name: "userName" },
+        username: { label: "username", type: "text", name: "username" },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
@@ -189,7 +190,7 @@ export const options: NextAuthOptions = {
 
       // Approach 3: Token refresh mechanism
       // Check if the access token is about to expire and refresh it if needed
-      if (Date.now() + 60 > token.exp) {
+      if (typeof token.exp === 'number' && Date.now() + 60 > token.exp) {
         token = await refreshAccessToken(token);
       }
 
@@ -210,7 +211,7 @@ export const options: NextAuthOptions = {
   },
 };
 
-async function refreshAccessToken(token) {
+async function refreshAccessToken(token: JWT) {
   try {
     const response = await axios.post(baseUrl + "api/v1/users/login/refresh", {
       token: token,
@@ -220,16 +221,17 @@ async function refreshAccessToken(token) {
 
     const refreshedTokens = response.data;
 
-    if (!response.ok) {
+    if (response.status === 200) { // Check the HTTP status code
+      return {
+        ...token,
+        accessToken: refreshedTokens.access_token,
+        accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
+        refreshToken: refreshedTokens.refresh_token || token.refreshToken,
+      };
+    } else {
       throw refreshedTokens;
     }
-
-    return {
-      ...token,
-      accessToken: refreshedTokens.access_token,
-      accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
-      refreshToken: refreshedTokens.refresh_token || token.refreshToken,
-    };
+   
   } catch (error) {
     console.log(error);
 

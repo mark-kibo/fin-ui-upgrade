@@ -27,9 +27,6 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
 
     
     useEffect(() => {
-        // fetch("http://200126984.cs2410-web01pvm.aston.ac.uk/react-amazon-navbar/").then(data => data.json()).then(response => {
-        //     setEntryStore(response);
-        // })
         setEntryStore(MenuContent);
     }, []);
 

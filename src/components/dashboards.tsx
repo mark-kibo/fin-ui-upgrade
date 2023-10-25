@@ -1,17 +1,8 @@
 "use client";
 
 import AreaChart from "./ApexCharts/AreaChart";
-import ColumnChart from "./ApexCharts/ColumnChart";
-import PieChart from "./ApexCharts/PieChart";
 import BarChart from "./ApexCharts/barChart";
-import Loans from "./Loans";
-import MessageHandler from "./MessageHandler/MessageHandler";
-
-import Reports from "./Reports";
 import TopCards from "./TopCards";
-import Transactions from "./Transactions";
-import Handler from "./handler";
-import nookies from "nookies"
 
 const Dashboard = () => {
 	
@@ -25,8 +16,6 @@ const Dashboard = () => {
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-2 p-4">
 				<BarChart />
 				<AreaChart />
-				{/* <ColumnChart />
-				<PieChart /> */}
 			</div>
 		</div>
 	);
