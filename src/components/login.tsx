@@ -66,7 +66,7 @@ function Login() {
               if (result.error) {
                 setError({
                   type: 'error',
-                  message: 'Username or password does not exist or network issue',
+                  message: 'Invalid credentials, try again',
                 });
               } else {
                 setSuccess({
@@ -86,7 +86,7 @@ function Login() {
           } catch (error: any) {
             setError({
               type: 'warning',
-              message: 'Server is down',
+              message: 'Contact administrator',
             });
           }
       
