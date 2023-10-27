@@ -24,7 +24,7 @@ const SubSideBar = () => {
 
            
 
-            {subContainerEntries.map((subEntry: { id: number| null | undefined; label: string; submenu: Object[]; }) => (
+            {subContainerEntries && subContainerEntries.map((subEntry: { id: number| null | undefined; label: string; submenu: Object[]; }, index:number) => (
 
                
 
@@ -38,7 +38,7 @@ const SubSideBar = () => {
 
                
 
-                  <SideNavRow key={subEntry.id} text={subEntry.label} entries={subEntry.submenu}/>
+                  <SideNavRow key={index} text={subEntry.text} entries={subEntry.childNodes}/>
 
                
 

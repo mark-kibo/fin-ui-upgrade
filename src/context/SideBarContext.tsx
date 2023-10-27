@@ -1,6 +1,11 @@
 "use client"
 import React, { useContext, createContext, useEffect, useState } from "react";
 import { MenuContent } from '../json/menu';
+import axios from "axios";
+import { baseUrl, frontUrl } from "@/utils/constants";
+
+import { useSession } from "next-auth/react";
+import { decryptRijndael } from "@/Encryption/encryptToken";
 
 
 type Anchor = 'left';
@@ -23,20 +28,35 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
     //Responsible for storing the subContainers entries
     const [subContainerEntries, setSubContainerEntries] = useState(null);
     //Responsible for holding all of the data that goes into the navbar
-    const [entryStore, setEntryStore] = useState<Object []>();
+    const [finmenus, setFinMenus] = useState<Object []>();
 
+    const{data:session}= useSession()
     
+   
     useEffect(() => {
-        setEntryStore(MenuContent);
-    }, []);
+      
+      if(session){
+        console.log(session?.user?.connectionString,session?.user?.userRole, session?.user?.userName)
+        const headers ={
+          "X-ConnectionString": decryptRijndael(session?.user?.connectionString),
+          "X-UserRole": session?.user?.userRole,
+          "X-Username": session?.user?.userName,
+      }
+      axios.get(baseUrl + "api/v1/profiles/modules",  {headers:headers})
+      .then(res=>{
+        console.log(res.data)
+        setFinMenus(res.data)})
+      .catch(e=>console.log(e))
+      }
+    }, [session]);
 
     const value = {
         subContainer,
         setSubContainer,
         subContainerEntries,
         setSubContainerEntries,
-        entryStore,
-        setEntryStore,
+        finmenus,
+        setFinMenus,
         setState,
         state
     }

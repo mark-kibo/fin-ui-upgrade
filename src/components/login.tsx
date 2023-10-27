@@ -74,7 +74,7 @@ function Login() {
                   message: 'Successfully logged in! Redirecting...',
                 });
         
-                router.push(callbackUrl ?? '');
+                router.push(callbackUrl ?? '/');
               }
             } else {
               // Handle the case where 'result' is undefined (e.g., due to an unexpected error)
@@ -142,7 +142,7 @@ function Login() {
                   autoComplete="Password"
                   onChange={(e) => {
                     const sanitizedValue = DOMPurify.sanitize(e.target.value);
-                    setPassword(encryptRijndael(sanitizedValue));
+                    setPassword(encryptRijndael(e.target.value));
                     console.log(password)
                   }}
                   type="password"
