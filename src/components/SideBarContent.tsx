@@ -8,7 +8,7 @@ import SubSideBar from "./SideNavContainer/Subcontainer";
 import { SideBarContext } from "@/context/SideBarContext";
 import { ChevronRight } from "@mui/icons-material";
 import SideNavRow from "./SideNavContainer/SideNavRow";
-import style from "@/utils/css/layout.module.css";
+
 import { HiChevronDown } from "react-icons/hi";
 
 //level 0 menu icons
@@ -29,14 +29,14 @@ const SideBar: React.FC = () => {
     useContext(SideBarContext);
   // level 0 icon
   const icons: Record<string, React.ReactElement> = {
-    FinFinancials: <FinfinancialsIcon  />,
-    Inventory: <InventoryIcon />,
-    "Fixed Assets": <FixedAssetsIcon />,
-    "File Tracker": <FileTrackerIcon />,
-    "Human Resource": <HumanResourceIcon />,
-    Payroll: <PayrollIcon />,
-    "Global Administration": <GlobalAdministrationIcon />,
-    "Consolidated Reports": <ConsolidatedReportsIcon />,
+    FinFinancials: <FinfinancialsIcon className="flex justify-center text-[#1F5780]" />,
+    Inventory: <InventoryIcon className="flex justify-center text-[#1F5780]" />,
+    "Fixed Assets": <FixedAssetsIcon className="flex justify-center text-[#1F5780]"/>,
+    "File Tracker": <FileTrackerIcon className="flex justify-center text-[#1F5780]" />,
+    "Human Resource": <HumanResourceIcon className="flex justify-center text-[#1F5780]"/>,
+    Payroll: <PayrollIcon className="flex justify-center text-[#1F5780]"/>,
+    "Global Administration": <GlobalAdministrationIcon className="flex justify-center text-[#1F5780]" />,
+    "Consolidated Reports": <ConsolidatedReportsIcon className="flex justify-center text-[#1F5780]" />,
   };
 
   // Specify the menus to display when landing on the dashboard
@@ -70,50 +70,31 @@ const SideBar: React.FC = () => {
               menusToDisplay.includes(menu.text)
             )
             .map((menu: { [x: string]: any; text: string }) => (
-              // <div className="mx-4  mb-4" key={menu.text}>
-              //   <ListItemButton onClick={() => toggleSubmenu(menu.text)}>
-              //     {/* <div className={`${style.heading} cursor-pointer flex justify-center items-center bg-white border-gray-200 dark:bg-gray-900`}>
-              //       <p className="pr-2">{icons[menu.text]}</p>
-              //       {menu.text}
-              //    </div> */}
-                
-              //     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              //       <li className="flex items-center justify-center">
-              //         <p className="justify-center">{icons[menu.text]}</p>
-              //         <p className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500">{menu.text}</p>
-              //       </li>
-                   
-              //     </ul>
-
-              //     {/* check whether openedSubmenu matches menu.text for arrow action  */}
-              //     {openSubmenu === menu.text ? (
-              //       <HiChevronDown />
-              //     ) : (
-              //       <HiChevronDown style={{ transform: "rotate(270deg)" }} />
-              //     )}
-              //   </ListItemButton>
-              //   <Collapse in={openSubmenu === menu.text}>
-              //     {menu.childNodes.map(
-              //       (subEntry: { text: string; childNodes: Object[] }) => (
-              //         <SideNavRow
-              //           text={subEntry.text}
-              //           entries={subEntry.childNodes}
-              //           key={subEntry.text}
-              //         />
-              //       )
-              //     )}
-              //   </Collapse>
-              // </div>
-                <div className="my- mx-2 flex justify-between">
-                  <div className="flex justify-center items-center py-2">
+                <div className="mx-2 flex flex-col justify-between items-center cursor-pointer hover:text-gray-500 duration-100 transition ease-in-out" onClick={() => toggleSubmenu(menu.text)}>
+                  <div className="flex w-full justify-between flex-row items-center py-2">
+                    <div className="flex flex-row items-center">
                       {icons[menu.text]}
-                      <p className={`${style.heading2} flex items-center cursor-pointer py-2 pl-3 pr-4  text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500`}>{menu.text}</p>
+                      <p className={` font-semibold  pl-3 ml-2 text rounded md:bg-transparent  md:p-0 dark:text-white`}>{menu.text}</p>
+                    </div>
+                      
+                      {openSubmenu === menu.text ? (
+                        <HiChevronDown />
+                      ) : (
+                        <HiChevronDown style={{ transform: "rotate(270deg)" }} />
+                      )}
                   </div>
-                  {openSubmenu === menu.text ? (
-                    <HiChevronDown />
-                  ) : (
-                    <HiChevronDown style={{ transform: "rotate(270deg)" }} />
-                  )}
+                  
+                      <Collapse in={openSubmenu === menu.text}>
+                        {menu.childNodes.map(
+                        (subEntry: { text: string; childNodes: Object[] }) => (
+                          <SideNavRow
+                            text={subEntry.text}
+                            entries={subEntry.childNodes}
+                            key={subEntry.text}
+                          />
+                        )
+                      )}
+                    </Collapse>
                   </div>
             ))}
 

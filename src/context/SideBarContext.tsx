@@ -15,6 +15,7 @@ interface SideBarProviderProps {
   children: React.ReactNode;
 }
 
+
 const SideBarProvider = ({ children }: SideBarProviderProps) => {
   const [state, setState] = React.useState({
     top: false,
@@ -32,15 +33,22 @@ const SideBarProvider = ({ children }: SideBarProviderProps) => {
 
     const{data:session}= useSession()
     
-   
+    const transformedSession = {
+      user: {
+        connectionString: session?.user.connectionString || "",
+        userRole: session?.user.userRole || "",
+        userName: session?.user.userName || "",
+      },
+    };
+      
     useEffect(() => {
       
       if(session){
-        console.log(session?.user?.connectionString,session?.user?.userRole, session?.user?.userName)
+        const { connectionString, userRole, userName } = transformedSession.user;
         const headers ={
-          "X-ConnectionString": decryptRijndael(session?.user?.connectionString),
-          "X-UserRole": session?.user?.userRole,
-          "X-Username": session?.user?.userName,
+          "X-ConnectionString": decryptRijndael(connectionString),
+          "X-UserRole": userRole,
+          "X-Username": userName,
       }
       axios.get(baseUrl + "api/v1/profiles/modules",  {headers:headers})
       .then(res=>{

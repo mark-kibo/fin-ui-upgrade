@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
 							</IconButton>
 						</DrawerHeader>
 						<Divider className="mb-2" style={{
-							borderTop:"2px solid #00f", /* You can change the color (#00f) to your preferred color */
+							borderTop:"2px solid #1F5780", /* You can change the color (#00f) to your preferred color */
 							margin: "8px 0", /* Adjust margin as needed */
 							borderRadius: "5px"
 						}}/>
