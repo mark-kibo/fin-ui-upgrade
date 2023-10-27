@@ -134,6 +134,9 @@ interface User {
   id: number;
   username: string;
   password: string;
+  connectionString:string;
+  userRole:string;
+
   role: string;
   created_at: string;
   updated_at?: any;
@@ -200,7 +203,16 @@ export const options: NextAuthOptions = {
       return token;
     },
     session: async ({ session, token }) => {
-      session.user = { ...token };
+      session.user = {
+        connectionString: token.connectionString as string,
+        userRole: token.userRole as string,
+        userName: token.userName as string,
+        token:token.token as string,
+        institutionName: token.institutionName as string,
+        branches: token.branches as string,
+        saccoName: token.saccoName as string
+        // You can include other user properties as needed
+      };
       return session;
     },
   },
