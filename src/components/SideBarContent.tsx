@@ -104,10 +104,17 @@ const SideBar: React.FC = () => {
               //     )}
               //   </Collapse>
               // </div>
-                <div className="">
-                     <p className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500">Home</p>
-                </div>
-          
+                <div className="my- mx-2 flex justify-between">
+                  <div className="flex justify-center items-center py-2">
+                      {icons[menu.text]}
+                      <p className={`${style.heading2} flex items-center cursor-pointer py-2 pl-3 pr-4  text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500`}>{menu.text}</p>
+                  </div>
+                  {openSubmenu === menu.text ? (
+                    <HiChevronDown />
+                  ) : (
+                    <HiChevronDown style={{ transform: "rotate(270deg)" }} />
+                  )}
+                  </div>
             ))}
 
     </div>
