@@ -123,6 +123,7 @@ function Login() {
                   autoComplete="off"
                   onChange={(e) => {
                     const sanitizedValue = DOMPurify.sanitize(e.target.value);
+                    console.log( "Sanitized value:", sanitizedValue)
                     setUserName(encryptRijndael(sanitizedValue));
                     // console.log(matchesPattern(decryptRijndael(userName)))
                     console.log(userName)
@@ -131,7 +132,7 @@ function Login() {
                   name="userName"
                   id="name"
                   required
-                  className={`bg-white text-sky-900 border border-sky-900 text-sm rounded w-full p-2.5`}
+                  className={`bg-white text-asky-900 border border-sky-900 text-sm rounded w-full p-2.5`}
                   placeholder="John Doe"
                 />
               </div>
@@ -142,6 +143,7 @@ function Login() {
                   autoComplete="Password"
                   onChange={(e) => {
                     const sanitizedValue = DOMPurify.sanitize(e.target.value);
+                    console.log( "Sanitized value:", sanitizedValue)
                     setPassword(encryptRijndael(e.target.value));
                     console.log(password)
                   }}

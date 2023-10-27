@@ -13,7 +13,7 @@ function dashboard() {
         <Providers>
             <Layout>
                 <>
-                    <div className="mt-50">
+                    <div className="mt-50 h-auto ">
                         <Dashboard />
                     </div>
                 </>
